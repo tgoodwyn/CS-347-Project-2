@@ -17,10 +17,10 @@ public class WarmupSetup : MonoBehaviour
     public int[] z2s = { 15, 10, 5 };  // z coordinates of rightmost target columns
 
 
-    public List<GameObject> spawnedTargets = new List<GameObject>();
+    private List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
 
-    public void spawnTargets() {
+    private void spawnTargets() {
         int index = 0;
         int functionIndex = 0;
         if (eIncrementor < 9)
@@ -88,7 +88,7 @@ public class WarmupSetup : MonoBehaviour
     }
 
     // Spawns spherical targets in 2 lines extending horizontally, constant spacing between targets
-    public void spawnTargetsH1(int index) {
+    private void spawnTargetsH1(int index) {
         int tandsDistance = stRadii[index] * 2 * 10 + tSpacings[index] * 9; // target and spacing combined distance covered
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizonatally centered
         Vector3 pos = new Vector3(65, tHeight1s[index], startingPosition);
@@ -105,7 +105,7 @@ public class WarmupSetup : MonoBehaviour
     }
     
     // Spawns spherical targets in 2 lines extending horizontally, random spacing between targets
-    public void spawnTargetsH2(int index) 
+    private void spawnTargetsH2(int index) 
     {
         int[] rngTSpacings = new int[18];
         int tSpacingDistance = 0;
@@ -137,7 +137,7 @@ public class WarmupSetup : MonoBehaviour
     }
 
     // Spawns mixed spherical/cubical targets in 2 lines extending horizontally, constant spacing between targets
-    public void spawnTargetsH3(int index) {
+    private void spawnTargetsH3(int index) {
         int tandsDistance = stRadii[index] * 2 * 5 + ctSizes[index] * 4 + tSpacings[index] * 8;
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
         Vector3 pos = new Vector3(65, tHeight1s[index], startingPosition);
@@ -165,7 +165,7 @@ public class WarmupSetup : MonoBehaviour
         }
     }
     // Spawns spherical targets in 2 lines extending vertically, constant spacing between targets
-    public void spawnTargetsV1(int index)
+    private void spawnTargetsV1(int index)
     {
         Vector3 pos = new Vector3(65, 5, z1s[index]);
         for (int i = 0; i < 10; i++)
@@ -181,7 +181,7 @@ public class WarmupSetup : MonoBehaviour
     }
 
     // Spawns spherical targets in 2 lines extending vertically, random spacing between targets
-    public void spawnTargetsV2(int index) {
+    private void spawnTargetsV2(int index) {
         int[] rngTSpacings = new int[18];
         for (int i = 0; i < 9; i++)
         {
@@ -208,7 +208,7 @@ public class WarmupSetup : MonoBehaviour
     }
 
     // Spawns mixed spherical/cubical targets in 2 lines extending vertically, constant spacing between targets
-    public void spawnTargetsV3(int index)
+    private void spawnTargetsV3(int index)
     {
         Vector3 pos = new Vector3(65, 5, z1s[index]);
         for (int i = 0; i < 9; i++)
@@ -235,7 +235,7 @@ public class WarmupSetup : MonoBehaviour
         }
     }
 
-    public void spawnTargetsD1(int index) {
+    private void spawnTargetsD1(int index) {
         float zIncrement = .907f;
         float yIncrement = .421f;
         Vector3 pos = new Vector3(65, 32, 0);
@@ -276,7 +276,7 @@ public class WarmupSetup : MonoBehaviour
         }
     }
 
-    public void spawnTargetsD2(int index)
+    private void spawnTargetsD2(int index)
     {
         int ballCount = 3;
         if (index!= 0) {
@@ -330,7 +330,7 @@ public class WarmupSetup : MonoBehaviour
         }
     }
 
-    public void spawnTargetsD3(int index)
+    private void spawnTargetsD3(int index)
     {
         float zIncrement = .907f;
         float yIncrement = .421f;
@@ -403,6 +403,10 @@ public class WarmupSetup : MonoBehaviour
                 spawnedTargets.Add(instantiated);
             }
         }
+    }
+
+    private void spawnTargetsC1(int index) { 
+        
     }
     // Start is called before the first frame update
     void Start()
