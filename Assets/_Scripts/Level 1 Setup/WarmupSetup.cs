@@ -15,7 +15,9 @@ public class WarmupSetup : MonoBehaviour
     public int[] tHeight2s = { 45, 35, 25 }; // Heights at which top-most rows of targets are to be spawned, in the order in which they are to be used
     public int[] z1s = { -15, -10, -5 };  // z coordinates of leftmost target columns
     public int[] z2s = { 15, 10, 5 };  // z coordinates of rightmost target columns
-
+    public int[] tsAngles = { 30, 24, 18 };
+    public int[] tsRadii = { 25, 20, 15 };
+    
 
     private List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
@@ -31,8 +33,12 @@ public class WarmupSetup : MonoBehaviour
         {
             index = (int)Mathf.Floor(eIncrementor / 3) - 3;
         }
-        else if (eIncrementor < 27) {
+        else if (eIncrementor < 27)
+        {
             index = (int)Mathf.Floor(eIncrementor / 3) - 6;
+        }
+        else if (eIncrementor < 36) {
+            index = (int)Mathf.Floor(eIncrementor / 3) - 9;
         }
         if (eIncrementor < 9)
         {
@@ -42,8 +48,12 @@ public class WarmupSetup : MonoBehaviour
         {
             functionIndex = eIncrementor % 3 + 3;
         }
-        else if (eIncrementor < 27) {
+        else if (eIncrementor < 27)
+        {
             functionIndex = eIncrementor % 3 + 6;
+        }
+        else if (eIncrementor < 36) {
+            functionIndex = eIncrementor % 3 + 9;
         }
         else
         {
@@ -81,9 +91,20 @@ public class WarmupSetup : MonoBehaviour
         {
             spawnTargetsD2(index);
         }
-        else if (functionIndex == 8) 
+        else if (functionIndex == 8)
         {
             spawnTargetsD3(index);
+        }
+        else if (functionIndex == 9)
+        {
+            spawnTargetsC1(index);
+        }
+        else if (functionIndex == 10)
+        {
+            spawnTargetsC2(index);
+        }
+        else if (functionIndex == 11) {
+            spawnTargetsC3(index);
         }
     }
 
@@ -182,14 +203,6 @@ public class WarmupSetup : MonoBehaviour
 
     // Spawns spherical targets in 2 lines extending vertically, random spacing between targets
     private void spawnTargetsV2(int index) {
-        int[] rngTSpacings = new int[18];
-        for (int i = 0; i < 9; i++)
-        {
-            rngTSpacings[i] = tSpacings[index] * Random.Range(1, 4 + index);
-        }
-        for (int i = 9; i < 18; i++) {
-            rngTSpacings[i] = tSpacings[index] * Random.Range(1, 4 + index);
-        }
         Vector3 pos = new Vector3(65, 5, z1s[index]);
         Vector3 pos2 = new Vector3(65, 5, z2s[index]);
         for (int i = 0; i < 10; i++)
@@ -200,8 +213,8 @@ public class WarmupSetup : MonoBehaviour
             spawnedTargets.Add(instantiated2);
             if (i < 9)
             {
-                pos.y += 2 * stRadii[index] + rngTSpacings[i];
-                pos2.y += 2 * stRadii[index] + rngTSpacings[i + 9];
+                pos.y += 2 * stRadii[index] + Random.Range(1,4+index);
+                pos2.y += 2 * stRadii[index] + Random.Range(1,4+index);
             }
 
         }
@@ -284,11 +297,6 @@ public class WarmupSetup : MonoBehaviour
         }
         float zIncrement = .907f;
         float yIncrement = .421f;
-        int[] rngTSpacings = new int[4*ballCount];
-        for (int i = 0; i < 4*ballCount; i++)
-        {
-            rngTSpacings[i] = tSpacings[index] * Random.Range(1, 4 + index);
-        }
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(sTargets[index], pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -296,8 +304,9 @@ public class WarmupSetup : MonoBehaviour
         
         for (int i = 0; i < ballCount; i++)
         {
-            pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacings[i]);
-            pos.y += yIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacings[i]);
+            int rngTSpacing = Random.Range(1, 4 + index);
+            pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
+            pos.y += yIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
@@ -305,8 +314,9 @@ public class WarmupSetup : MonoBehaviour
         pos.y = 32;
         for (int i = 0; i < ballCount; i++)
         {
-            pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount]);
-            pos.y += yIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount]);
+            int rngTSpacing = Random.Range(1, 4 + index);
+            pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
+            pos.y += yIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
@@ -314,8 +324,9 @@ public class WarmupSetup : MonoBehaviour
         pos.y = 32;
         for (int i = 0; i < ballCount; i++)
         {
-            pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount*2]);
-            pos.y += yIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount*2]);
+            int rngTSpacing = Random.Range(1, 4 + index);
+            pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
+            pos.y += yIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
@@ -323,8 +334,9 @@ public class WarmupSetup : MonoBehaviour
         pos.y = 32;
         for (int i = 0; i < ballCount; i++)
         {
-            pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount*3]);
-            pos.y += yIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacings[i+ballCount*3]);
+            int rngTSpacing = Random.Range(1, 4 + index);
+            pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
+            pos.y += yIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
@@ -405,8 +417,53 @@ public class WarmupSetup : MonoBehaviour
         }
     }
 
-    private void spawnTargetsC1(int index) { 
-        
+    private void spawnTargetsC1(int index) {
+        Vector3 circleCenter = new Vector3(65, 32, 0);
+        Vector3 pos = new Vector3(65,0, 0);
+        for (int i = 0; i < 360/tsAngles[index]; i++) {
+            pos.z = tsRadii[index] * Mathf.Cos(tsAngles[index] * Mathf.Deg2Rad * i);
+            pos.y = 32 + tsRadii[index] * Mathf.Sin(tsAngles[index] * Mathf.Deg2Rad * i);
+            GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated);
+        }
+    }
+
+    private void spawnTargetsC2(int index) {
+        Vector3 cirleCenter = new Vector3(65, 32, 0);
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] tQuantities = { 8, 9, 9 };
+        int[] rngTSAngles = { 7, 7, 7 };
+        int angle = 0;
+        for (int i = 0; i < tQuantities[index]; i++) {
+            int rf = Random.Range(1, 4 + index);
+            int rAngle = rngTSAngles[index] * rf;
+            pos.z = tsRadii[index] * Mathf.Cos((angle+rAngle)*Mathf.Deg2Rad);
+            pos.y = 32 + tsRadii[index] * Mathf.Sin((angle+rAngle)*Mathf.Deg2Rad);
+            GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated);
+            angle += tsAngles[index] + rAngle;
+            print(angle);
+        }
+
+    }
+    private void spawnTargetsC3(int index)
+    {
+        Vector3 circleCenter = new Vector3(65, 32, 0);
+        Vector3 pos = new Vector3(65, 0, 0);
+        for (int i = 0; i < 360 / tsAngles[index]; i++)
+        {
+            pos.z = tsRadii[index] * Mathf.Cos(tsAngles[index] * Mathf.Deg2Rad * i);
+            pos.y = 32 + tsRadii[index] * Mathf.Sin(tsAngles[index] * Mathf.Deg2Rad * i);
+            if (i % 2 == 0)
+            {
+                GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+                spawnedTargets.Add(instantiated);
+            }
+            else {
+                GameObject instantiated = Instantiate(cTargets[index], pos, Quaternion.identity);
+                spawnedTargets.Add(instantiated);
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
