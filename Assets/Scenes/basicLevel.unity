@@ -396,8 +396,8 @@ MonoBehaviour:
   tSpacings: 030000000200000002000000
   tHeight1s: 0f0000000f0000000f000000
   tHeight2s: 2d0000002300000019000000
-  z1: -20
-  z2: 20
+  z1s: f1fffffff6fffffffbffffff
+  z2s: 0f0000000a00000005000000
   spawnedTargets: []
 --- !u!1001 &1735879263
 PrefabInstance:
@@ -511,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 5433324394937657731, guid: ad8dae44cb1148e4d90694c9821f9528,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40
+      value: -39.5
       objectReference: {fileID: 0}
     - target: {fileID: 5433324394937657731, guid: ad8dae44cb1148e4d90694c9821f9528,
         type: 3}
