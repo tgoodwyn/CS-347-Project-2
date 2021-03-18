@@ -6,15 +6,15 @@ using UnityEngine;
 // Level 1 warmup portion script, n to advance to the next event of the warmup, r to repeat an event, and c to clear targets
 public class WarmupSetup : MonoBehaviour
 {
-    public GameObject[] sTargets = new GameObject[3];
-    public GameObject[] cTargets = new GameObject[3];
-    public int[] stRadii = { 5, 3, 2 };
-    public int[] ctSizes = { 9, 5, 3 };
-    public int[] tSpacings = { 3, 2, 2 };
-    public int[] tHeight1s = { 15, 15, 15 };
-    public int[] tHeight2s = { 45, 35, 25 };
-    public int[] z1s = { -15, -10, -5 };  // z coordinate of leftmost vertically spawned target column
-    public int[] z2s = { 15, 10, 5 };  // z coordinate of rightmost vertically spawned target column
+    public GameObject[] sTargets = new GameObject[3];  // Spherical target prefab array
+    public GameObject[] cTargets = new GameObject[3];  // Cubical target prefab array
+    public int[] stRadii = { 5, 3, 2 };  // Spherical target radii, in the order they are to be spawned
+    public int[] ctSizes = { 9, 5, 3 };  // Cubical target sizes, in the order they are to be spawned
+    public int[] tSpacings = { 3, 2, 2 }; // Inter-target spacing distances, in the order in which they are to be used
+    public int[] tHeight1s = { 15, 15, 15 }; // Heights at which bottom-most rows of targets are to be spawned, in the order in which they are to be used
+    public int[] tHeight2s = { 45, 35, 25 }; // Heights at which top-most rows of targets are to be spawned, in the order in which they are to be used
+    public int[] z1s = { -15, -10, -5 };  // z coordinates of leftmost target columns
+    public int[] z2s = { 15, 10, 5 };  // z coordinates of rightmost target columns
 
 
     public List<GameObject> spawnedTargets = new List<GameObject>();
