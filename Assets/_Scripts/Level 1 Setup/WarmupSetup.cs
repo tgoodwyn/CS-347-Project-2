@@ -442,7 +442,6 @@ public class WarmupSetup : MonoBehaviour
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
             angle += tsAngles[index] + rAngle;
-            print(angle);
         }
 
     }
