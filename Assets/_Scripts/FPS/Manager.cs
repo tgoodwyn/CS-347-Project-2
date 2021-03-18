@@ -6,14 +6,20 @@ public class Manager : MonoBehaviour
 {
 
     bool begun = true;
+
+    public static int targetsHit = 0;
+
     void Start()
     {
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M)) begun = !begun;
-        //Debug.Log(begun);
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            begun = !begun;
+            Debug.Log(targetsHit);
+        }
     }
 
     public bool hasBegun()

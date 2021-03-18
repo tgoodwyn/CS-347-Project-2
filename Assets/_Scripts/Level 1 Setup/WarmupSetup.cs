@@ -22,6 +22,8 @@ public class WarmupSetup : MonoBehaviour
     private List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
 
+    // for checking when the level's been beat
+    private int numTargets = 20;
     private void spawnTargets() {
         int index = 0;
         int functionIndex = 0;
@@ -474,13 +476,8 @@ public class WarmupSetup : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.N)) {
-            foreach (GameObject obj in spawnedTargets)
-            {
-                Destroy(obj);
-            }
-            spawnedTargets.Clear();
-            eIncrementor++;
-            spawnTargets();
+            // extracted into its own method
+            nextLevel();
         }
         if (Input.GetKeyDown(KeyCode.R)) {
             foreach (GameObject obj in spawnedTargets) {
@@ -495,5 +492,23 @@ public class WarmupSetup : MonoBehaviour
             }
             spawnedTargets.Clear();
         }
+
+        if (Manager.targetsHit >= numTargets) nextLevel();
+    }
+
+    private void nextLevel()
+    {
+        
+        // reset the count of targets hit
+        Manager.targetsHit = 0;
+        foreach (GameObject obj in spawnedTargets)
+        {
+            Destroy(obj);
+        }
+        spawnedTargets.Clear();
+        eIncrementor++;
+        spawnTargets();
     }
 }
+
+
