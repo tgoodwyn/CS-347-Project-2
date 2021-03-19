@@ -10,14 +10,14 @@ public class WarmupSetup : MonoBehaviour
     public GameObject[] cTargets = new GameObject[3];  // Cubical target prefab array
     public int[] stRadii = { 5, 3, 2 };  // Spherical target radii, in the order they are to be spawned
     public int[] ctSizes = { 9, 5, 3 };  // Cubical target sizes, in the order they are to be spawned
-    public int[] tSpacings = { 3, 2, 2 }; // Inter-target spacing distances, in the order in which they are to be used
-    public int[] tHeight1s = { 15, 15, 15 }; // Heights at which bottom-most rows of targets are to be spawned, in the order in which they are to be used
-    public int[] tHeight2s = { 45, 35, 25 }; // Heights at which top-most rows of targets are to be spawned, in the order in which they are to be used
+    public int[] tSpacings = { 3, 2, 2 }; // Inter-target spacing distances, in the order they are to be used
+    public int[] tHeight1s = { 15, 15, 15 }; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
+    public int[] tHeight2s = { 45, 35, 25 }; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
     public int[] z1s = { -15, -10, -5 };  // z coordinates of leftmost target columns
     public int[] z2s = { 15, 10, 5 };  // z coordinates of rightmost target columns
     public int[] tsAngles = { 30, 24, 18 };
     public int[] tsRadii = { 25, 20, 15 };
-    
+
 
     private List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
@@ -39,8 +39,12 @@ public class WarmupSetup : MonoBehaviour
         {
             index = (int)Mathf.Floor(eIncrementor / 3) - 6;
         }
-        else if (eIncrementor < 36) {
+        else if (eIncrementor < 36)
+        {
             index = (int)Mathf.Floor(eIncrementor / 3) - 9;
+        }
+        else if (eIncrementor < 42) {
+            index = (int)Mathf.Floor((eIncrementor - 36) / 2);
         }
         if (eIncrementor < 9)
         {
@@ -54,8 +58,12 @@ public class WarmupSetup : MonoBehaviour
         {
             functionIndex = eIncrementor % 3 + 6;
         }
-        else if (eIncrementor < 36) {
+        else if (eIncrementor < 36)
+        {
             functionIndex = eIncrementor % 3 + 9;
+        }
+        else if (eIncrementor < 42) {
+            functionIndex = (eIncrementor-36) % 2 + 12;
         }
         else
         {
@@ -105,8 +113,16 @@ public class WarmupSetup : MonoBehaviour
         {
             spawnTargetsC2(index);
         }
-        else if (functionIndex == 11) {
+        else if (functionIndex == 11)
+        {
             spawnTargetsC3(index);
+        }
+        else if (functionIndex == 12)
+        {
+            spawnTargetsRP1(index);
+        }
+        else if (functionIndex == 13) {
+            spawnTargetsRP2(index);
         }
     }
 
@@ -251,8 +267,8 @@ public class WarmupSetup : MonoBehaviour
     }
 
     private void spawnTargetsD1(int index) {
-        float zIncrement = .907f;
-        float yIncrement = .421f;
+        float zIncrement = .9285f;
+        float yIncrement = .3714f;
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(sTargets[index], pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -297,8 +313,8 @@ public class WarmupSetup : MonoBehaviour
         if (index!= 0) {
             ballCount = 5;
         }
-        float zIncrement = .907f;
-        float yIncrement = .421f;
+        float zIncrement = .9285f;
+        float yIncrement = .3714f;
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(sTargets[index], pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -346,8 +362,8 @@ public class WarmupSetup : MonoBehaviour
 
     private void spawnTargetsD3(int index)
     {
-        float zIncrement = .907f;
-        float yIncrement = .421f;
+        float zIncrement = .9285f;
+        float yIncrement = .3714f;
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(sTargets[index], pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -433,7 +449,7 @@ public class WarmupSetup : MonoBehaviour
     private void spawnTargetsC2(int index) {
         Vector3 cirleCenter = new Vector3(65, 32, 0);
         Vector3 pos = new Vector3(65, 0, 0);
-        int[] tQuantities = { 8, 9, 9 };
+        int[] tQuantities = { 8, 8, 9 };
         int[] rngTSAngles = { 7, 7, 7 };
         int angle = 0;
         for (int i = 0; i < tQuantities[index]; i++) {
@@ -463,6 +479,77 @@ public class WarmupSetup : MonoBehaviour
             else {
                 GameObject instantiated = Instantiate(cTargets[index], pos, Quaternion.identity);
                 spawnedTargets.Add(instantiated);
+            }
+        }
+    }
+
+    private void spawnTargetsRP1(int index) {
+        int tQuantity = 16;
+        int[] distanceThresholds = { 15, 10, 7 };
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity-1];
+        int[] rgPosYs = new int[tQuantity-1];
+        for (int i = 0; i < tQuantity; i++) {
+            rgUniqueCoords();
+            if (i != tQuantity - 1) {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+            
+            GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated);
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-100, 100);
+            pos.y = 32 + Random.Range(-25, 65);
+            for (int i = 0; i < tQuantity - 1;i++) {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z-rgPosZs[i], 2) + Mathf.Pow(pos.y-rgPosYs[i], 2));
+                if (distance < distanceThresholds[index]) {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+    }
+
+    private void spawnTargetsRP2(int index)
+    {
+        int tQuantity = 16;
+        int[] distanceThresholds = { 15, 10, 7 };
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+
+            if (i % 2 == 0) {
+                GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+                spawnedTargets.Add(instantiated);
+            }
+            else {
+                GameObject instantiated = Instantiate(cTargets[index], pos, Quaternion.identity);
+                spawnedTargets.Add(instantiated);
+            }
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-100, 100);
+            pos.y = 32 + Random.Range(-25, 65);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
+                if (distance < distanceThresholds[index])
+                {
+                    rgUniqueCoords();
+                }
+
             }
         }
     }
