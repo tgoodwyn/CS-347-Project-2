@@ -11,8 +11,8 @@ public class WarmupSetup : MonoBehaviour
     public int[] stRadii = { 5, 3, 2 };  // Spherical target radii, in the order they are to be spawned
     public int[] ctSizes = { 9, 5, 3 };  // Cubical target sizes, in the order they are to be spawned
     public int[] tSpacings = { 3, 2, 2 }; // Inter-target spacing distances, in the order they are to be used
-    public int[] tHeight1s = { 15, 15, 15 }; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
-    public int[] tHeight2s = { 45, 35, 25 }; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
+    public int[] tHeight1s = { 15, 20, 25 }; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
+    public int[] tHeight2s = { 45, 40, 40 }; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
     public int[] z1s = { -15, -10, -5 };  // z coordinates of leftmost target columns
     public int[] z2s = { 15, 10, 5 };  // z coordinates of rightmost target columns
     public int[] tsAngles = { 30, 24, 18 };
