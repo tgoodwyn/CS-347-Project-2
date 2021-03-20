@@ -205,7 +205,7 @@ public class WarmupSetup : MonoBehaviour
             }
             pos.z += stRadii[index] + ctSizes[index] / 2 + tSpacings[index];
         }
-        numTargets = 18;
+        numTargets = 10;
     }
     // Spawns spherical targets in 2 lines extending vertically, constant spacing between targets
     private void spawnTargetsV1(int index)
@@ -271,7 +271,7 @@ public class WarmupSetup : MonoBehaviour
             }
             pos.y += stRadii[index] + ctSizes[index] / 2 + tSpacings[index];
         }
-        numTargets = 18;
+        numTargets = 10;
     }
 
     private void spawnTargetsD1(int index) {
@@ -443,7 +443,7 @@ public class WarmupSetup : MonoBehaviour
                 spawnedTargets.Add(instantiated);
             }
         }
-        numTargets = 21;
+        numTargets = 9;
     }
 
     private void spawnTargetsC1(int index) {
@@ -494,7 +494,15 @@ public class WarmupSetup : MonoBehaviour
                 spawnedTargets.Add(instantiated);
             }
         }
-        numTargets = 360 / tsAngles[index];
+        if (360 / tsAngles[index] % 2 == 0)
+        {
+            numTargets = 360 / tsAngles[index] / 2;
+        }
+        else
+        {
+            numTargets = (360 / tsAngles[index] - 1) / 2;
+
+        }
     }
 
     private void spawnTargetsRP1(int index) {
@@ -567,7 +575,14 @@ public class WarmupSetup : MonoBehaviour
 
             }
         }
-        numTargets = tQuantity;
+        if (tQuantity % 2 == 0)
+        {
+            numTargets = tQuantity / 2;
+        }
+        else
+        {
+            numTargets = (tQuantity - 1) / 2;
+        }
     }
     private void spawnTargetsRP3(int index)
     {
