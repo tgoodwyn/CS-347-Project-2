@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour
     {
         if (managed)
         {
-            if (manager.hasBegun()) GetInputs();
+            if (manager.isPaused()) GetInputs();
         }
         else
         {

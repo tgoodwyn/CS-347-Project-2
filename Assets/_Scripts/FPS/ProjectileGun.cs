@@ -74,7 +74,6 @@ public class ProjectileGun : MonoBehaviour
         //Calculate direction from spawn point to ray's hit.point
         Vector3 trajectory = aimPoint - BulletSpawnPoint.position;
 
-        Debug.Log(trajectory);
         //Instantiate bullet
         GameObject launchedBullet = Instantiate(bullet, BulletSpawnPoint.position, Quaternion.identity); 
         // set the forward direction of the bullet equal to its trajectory 

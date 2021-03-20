@@ -33,14 +33,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (managed)
-        {
-            if (manager.hasBegun()) GetInputs();
-        }
-        else
-        {
-            GetInputs();
-        }
+        if (!manager.isPaused()) GetInputs();
 
         camTransform.Rotate(-Vector3.right * mouseY * mouseYSensitivity * Time.deltaTime);
     }
