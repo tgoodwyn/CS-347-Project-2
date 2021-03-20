@@ -8,9 +8,9 @@ public class WarmupSetup : MonoBehaviour
 {
     public GameObject[] sTargets = new GameObject[3];  // Spherical target prefab array
     public GameObject[] cTargets = new GameObject[3];  // Cubical target prefab array
-    public int[] stRadii = { 5, 3, 2 };  // Spherical target radii, in the order they are to be spawned
-    public int[] ctSizes = { 9, 5, 3 };  // Cubical target sizes, in the order they are to be spawned
-    public int[] tSpacings = { 3, 2, 2 }; // Inter-target spacing distances, in the order they are to be used
+    private float[] stRadii = { 4, 2.5f,1.5f  };  // Spherical target radii, in the order they are to be spawned
+    private float[] ctSizes = { 7, 4, 2 };  // Cubical target sizes, in the order they are to be spawned
+    public int[] tSpacings = { 3, 2, 1 }; // Inter-target spacing distances, in the order they are to be used
     public int[] tHeight1s = { 15, 20, 25 }; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
     public int[] tHeight2s = { 45, 40, 40 }; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
     public int[] z1s = { -15, -10, -5 };  // z coordinates of leftmost target columns
@@ -128,7 +128,7 @@ public class WarmupSetup : MonoBehaviour
 
     // Spawns spherical targets in 2 lines extending horizontally, constant spacing between targets
     private void spawnTargetsH1(int index) {
-        int tandsDistance = stRadii[index] * 2 * 10 + tSpacings[index] * 9; // target and spacing combined distance covered
+        float tandsDistance = stRadii[index] * 2 * 10 + tSpacings[index] * 9; // target and spacing combined distance covered
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizonatally centered
         Vector3 pos = new Vector3(65, tHeight1s[index], startingPosition);
         for (int i = 0; i < 10; i++)
@@ -141,22 +141,24 @@ public class WarmupSetup : MonoBehaviour
             spawnedTargets.Add(instantiated2);
             pos.z += 2 * stRadii[index] + tSpacings[index];
         }
+        numTargets = 20;
     }
     
     // Spawns spherical targets in 2 lines extending horizontally, random spacing between targets
     private void spawnTargetsH2(int index) 
     {
+        int[] rngMTSpacings= { 10, 10, 10 };
         int[] rngTSpacings = new int[18];
         int tSpacingDistance = 0;
         for (int i = 0; i < 9; i++)
         {
-            rngTSpacings[i] = tSpacings[index] * Random.Range(1, 4+index);           
+            rngTSpacings[i] = Random.Range(1, rngMTSpacings[index]);           
             tSpacingDistance += rngTSpacings[i];
         }
         for (int i = 9; i < 18; i++) {
-            rngTSpacings[i] = tSpacings[index] * Random.Range(1, 4 + index);
+            rngTSpacings[i] = Random.Range(1, rngMTSpacings[index]);
         }
-        int tandsDistance = stRadii[index] * 2 * 10 + tSpacingDistance;
+        float tandsDistance = stRadii[index] * 2 * 10 + tSpacingDistance;
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
         Vector3 pos = new Vector3(65, tHeight1s[index], startingPosition);
         Vector3 pos2 = new Vector3(65, tHeight2s[index], startingPosition);
@@ -173,11 +175,12 @@ public class WarmupSetup : MonoBehaviour
             }
 
         }
+        numTargets = 20;
     }
 
     // Spawns mixed spherical/cubical targets in 2 lines extending horizontally, constant spacing between targets
     private void spawnTargetsH3(int index) {
-        int tandsDistance = stRadii[index] * 2 * 5 + ctSizes[index] * 4 + tSpacings[index] * 8;
+        float tandsDistance = stRadii[index] * 2 * 5 + ctSizes[index] * 4 + tSpacings[index] * 8;
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
         Vector3 pos = new Vector3(65, tHeight1s[index], startingPosition);
         for (int i = 0; i < 9; i++)
@@ -202,6 +205,7 @@ public class WarmupSetup : MonoBehaviour
             }
             pos.z += stRadii[index] + ctSizes[index] / 2 + tSpacings[index];
         }
+        numTargets = 18;
     }
     // Spawns spherical targets in 2 lines extending vertically, constant spacing between targets
     private void spawnTargetsV1(int index)
@@ -217,10 +221,12 @@ public class WarmupSetup : MonoBehaviour
             spawnedTargets.Add(instantiated2);
             pos.y += 2 * stRadii[index] + tSpacings[index];
         }
+        numTargets = 20;
     }
 
     // Spawns spherical targets in 2 lines extending vertically, random spacing between targets
     private void spawnTargetsV2(int index) {
+        int[] rngMTSpacings = { 10, 10, 10 };
         Vector3 pos = new Vector3(65, 5, z1s[index]);
         Vector3 pos2 = new Vector3(65, 5, z2s[index]);
         for (int i = 0; i < 10; i++)
@@ -236,6 +242,7 @@ public class WarmupSetup : MonoBehaviour
             }
 
         }
+        numTargets = 20;
     }
 
     // Spawns mixed spherical/cubical targets in 2 lines extending vertically, constant spacing between targets
@@ -264,6 +271,7 @@ public class WarmupSetup : MonoBehaviour
             }
             pos.y += stRadii[index] + ctSizes[index] / 2 + tSpacings[index];
         }
+        numTargets = 18;
     }
 
     private void spawnTargetsD1(int index) {
@@ -305,13 +313,14 @@ public class WarmupSetup : MonoBehaviour
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
+        numTargets = 21;
     }
 
     private void spawnTargetsD2(int index)
     {
-        int ballCount = 3;
+        int slTCount = 3;
         if (index!= 0) {
-            ballCount = 5;
+            slTCount = 5;
         }
         float zIncrement = .9285f;
         float yIncrement = .3714f;
@@ -320,7 +329,7 @@ public class WarmupSetup : MonoBehaviour
         spawnedTargets.Add(centerTarget);
 
         
-        for (int i = 0; i < ballCount; i++)
+        for (int i = 0; i < slTCount; i++)
         {
             int rngTSpacing = Random.Range(1, 4 + index);
             pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
@@ -330,7 +339,7 @@ public class WarmupSetup : MonoBehaviour
         }
         pos.z = 0;
         pos.y = 32;
-        for (int i = 0; i < ballCount; i++)
+        for (int i = 0; i < slTCount; i++)
         {
             int rngTSpacing = Random.Range(1, 4 + index);
             pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
@@ -340,7 +349,7 @@ public class WarmupSetup : MonoBehaviour
         }
         pos.z = 0;
         pos.y = 32;
-        for (int i = 0; i < ballCount; i++)
+        for (int i = 0; i < slTCount; i++)
         {
             int rngTSpacing = Random.Range(1, 4 + index);
             pos.z += zIncrement * (2 * stRadii[index] + tSpacings[index]+rngTSpacing);
@@ -350,7 +359,7 @@ public class WarmupSetup : MonoBehaviour
         }
         pos.z = 0;
         pos.y = 32;
-        for (int i = 0; i < ballCount; i++)
+        for (int i = 0; i < slTCount; i++)
         {
             int rngTSpacing = Random.Range(1, 4 + index);
             pos.z += zIncrement * -(2 * stRadii[index] + tSpacings[index]+rngTSpacing);
@@ -358,6 +367,7 @@ public class WarmupSetup : MonoBehaviour
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
+        numTargets = 1 + slTCount*4;
     }
 
     private void spawnTargetsD3(int index)
@@ -433,6 +443,7 @@ public class WarmupSetup : MonoBehaviour
                 spawnedTargets.Add(instantiated);
             }
         }
+        numTargets = 21;
     }
 
     private void spawnTargetsC1(int index) {
@@ -444,6 +455,7 @@ public class WarmupSetup : MonoBehaviour
             GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
             spawnedTargets.Add(instantiated);
         }
+        numTargets = 360 / tsAngles[index];
     }
 
     private void spawnTargetsC2(int index) {
@@ -461,6 +473,7 @@ public class WarmupSetup : MonoBehaviour
             spawnedTargets.Add(instantiated);
             angle += tsAngles[index] + rAngle;
         }
+        numTargets = tQuantities[index];
 
     }
     private void spawnTargetsC3(int index)
@@ -481,6 +494,7 @@ public class WarmupSetup : MonoBehaviour
                 spawnedTargets.Add(instantiated);
             }
         }
+        numTargets = 360 / tsAngles[index];
     }
 
     private void spawnTargetsRP1(int index) {
@@ -511,6 +525,7 @@ public class WarmupSetup : MonoBehaviour
 
             }
         }
+        numTargets = tQuantity;
     }
 
     private void spawnTargetsRP2(int index)
@@ -552,7 +567,47 @@ public class WarmupSetup : MonoBehaviour
 
             }
         }
+        numTargets = tQuantity;
     }
+    private void spawnTargetsRP3(int index)
+    {
+        int tQuantity = 16;
+        int[] distanceThresholds = { 15, 10, 7 };
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        int[] rgPosXs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+                rgPosXs[i] = (int)pos.x;
+            }
+
+            GameObject instantiated = Instantiate(sTargets[index], pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated);
+        }
+        void rgUniqueCoords()
+        {
+            pos.x = Random.Range(65, -20);
+            pos.z = Random.Range(-80, 80);
+            pos.y = 32 + Random.Range(-25, 20);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2)+Mathf.Pow(pos.x-rgPosXs[i],2));
+                if (distance < distanceThresholds[index])
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+        numTargets = tQuantity;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -566,6 +621,7 @@ public class WarmupSetup : MonoBehaviour
             // extracted into its own method
             nextLevel();
         }
+        // Repeats level
         if (Input.GetKeyDown(KeyCode.R)) {
             foreach (GameObject obj in spawnedTargets) {
                 Destroy(obj);
@@ -573,11 +629,21 @@ public class WarmupSetup : MonoBehaviour
             spawnedTargets.Clear();
             spawnTargets();
         }
+        // Clears targets
         if (Input.GetKeyDown(KeyCode.C)) {
             foreach (GameObject obj in spawnedTargets) {
                 Destroy(obj);
             }
             spawnedTargets.Clear();
+        }
+        // Enters test level
+        if (Input.GetKeyDown(KeyCode.T)) {
+            foreach (GameObject obj in spawnedTargets)
+            {
+                Destroy(obj);
+            }
+            spawnedTargets.Clear();
+            spawnTargetsRP3(1);
         }
 
         if (Manager.targetsHit >= numTargets) nextLevel();
