@@ -18,5 +18,11 @@ public class Bullet : MonoBehaviour
             Manager.targetsHit++;
             Destroy(other.gameObject);
         }
+        else if (other.tag == "Obstacle")
+        {
+            Manager.timeValue = Manager.timeValue - 5;
+            Manager.targetsHit++;
+            Destroy(other.gameObject);
+        }
     }
 }

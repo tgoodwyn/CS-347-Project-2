@@ -82,7 +82,7 @@ public class ProjectileGun : MonoBehaviour
 
         // normalize the bullet direction and multiply it by its speed
         launchedBullet.GetComponent<Rigidbody>().AddForce(trajectory.normalized * bulletSpeed, ForceMode.Impulse);
-
+        Manager.shotsValue += 1;
         Invoke("ReadyAgain", fireRate);
 
     }

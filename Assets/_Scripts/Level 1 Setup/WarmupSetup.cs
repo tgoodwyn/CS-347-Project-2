@@ -666,9 +666,17 @@ public class WarmupSetup : MonoBehaviour
 
     private void nextLevel()
     {
-        
+
         // reset the count of targets hit
+
+        //targetsHit = 20
+        //timeLeft = 20
+        //shotsTaken = 40
+        //20*20 - 20
+        Manager.scoreValue += Manager.targetsHit * (int)Manager.timeValue - Manager.shotsValue;
         Manager.targetsHit = 0;
+        Manager.shotsValue = 0;
+        Manager.timeValue = 30.0f;
         foreach (GameObject obj in spawnedTargets)
         {
             Destroy(obj);
