@@ -267,7 +267,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'You beat the game!
 
-    Press R to reset
+    Press Z to reset
 
 '
 --- !u!222 &81956421
@@ -983,7 +983,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Game Over
 
-    Press R to reset
+    Press Z to reset
 
 '
 --- !u!222 &1237271907
