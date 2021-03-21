@@ -282,7 +282,7 @@ public class Level1Controller : MonoBehaviour
         }
         numTargets = 10;
     }
-
+    // Spawns spherical targets diagonally in a squished X pattern, constant spacing between targets
     private void spawnTargetsD1(int index)
     {
         float zIncrement = .9285f;
@@ -327,6 +327,7 @@ public class Level1Controller : MonoBehaviour
         numTargets = 21;
     }
 
+    // Spawns spherical targets diagonally in a squished X pattern, random spacing between targets
     private void spawnTargetsD2(int index)
     {
         int slTCount = 3;
@@ -382,6 +383,7 @@ public class Level1Controller : MonoBehaviour
         numTargets = 1 + slTCount * 4;
     }
 
+    // Spawns mixed spherical/cubical targets diagonally in a squished X pattern, constant spacing between targets
     private void spawnTargetsD3(int index)
     {
         float zIncrement = .9285f;
@@ -459,6 +461,7 @@ public class Level1Controller : MonoBehaviour
         numTargets = 9;
     }
 
+    // Spawns spherical targets in a circular pattern, constant spacing between targets
     private void spawnTargetsC1(int index)
     {
         Vector3 circleCenter = new Vector3(65, 32, 0);
@@ -473,6 +476,7 @@ public class Level1Controller : MonoBehaviour
         numTargets = 360 / tsAngles[index];
     }
 
+    // Spawns spherical targets in a circular pattern, random spacing between targets
     private void spawnTargetsC2(int index)
     {
         Vector3 cirleCenter = new Vector3(65, 32, 0);
@@ -493,6 +497,8 @@ public class Level1Controller : MonoBehaviour
         numTargets = tQuantities[index];
 
     }
+
+    // Spawns mixed spherical/cubical targets in a circular pattern, constant spacing between targets
     private void spawnTargetsC3(int index)
     {
         Vector3 circleCenter = new Vector3(65, 32, 0);
@@ -523,6 +529,7 @@ public class Level1Controller : MonoBehaviour
         }
     }
 
+    // Spawns spherical targets in a random arrangement, with y and z coordinates generated randomly but such that no 2 targets are within a set distance of one another
     private void spawnTargetsRP1(int index)
     {
         int tQuantity = 16;
@@ -559,6 +566,7 @@ public class Level1Controller : MonoBehaviour
         numTargets = tQuantity;
     }
 
+    // Spawns mixed spherical/cubical targets in a random arrangement, with y and z coordinates generated randomly but such that no 2 targets are within a set distance of one another
     private void spawnTargetsRP2(int index)
     {
         int tQuantity = 16;
@@ -609,6 +617,8 @@ public class Level1Controller : MonoBehaviour
             numTargets = (tQuantity - 1) / 2;
         }
     }
+
+    // Test level, spawns spherical targets at random x,y,z coordinates
     private void spawnTargetsRP3(int index)
     {
         int tQuantity = 16;
