@@ -947,7 +947,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 86.3}
-  m_SizeDelta: {x: 504.02246, y: 94.50421}
+  m_SizeDelta: {x: 504.02246, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237271906
 MonoBehaviour:
@@ -983,7 +983,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Game Over
 
-    Press Z to reset
+    Press R to repeat the sub-level
+
+    Press Z to reset the
+    whole level
+
 
 '
 --- !u!222 &1237271907
@@ -1412,6 +1416,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2840049629552802180, guid: 45dcd919a989e524ab42c8f5d1a64a25,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2840049629552802179, guid: 45dcd919a989e524ab42c8f5d1a64a25, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 45dcd919a989e524ab42c8f5d1a64a25, type: 3}
@@ -1588,7 +1597,7 @@ MonoBehaviour:
   bullet: {fileID: 1249689949446563703, guid: bf2bc7c5b5517be49891365bce0d3b11, type: 3}
   BulletSpawnPoint: {fileID: 1751482214}
   cam: {fileID: 3349675}
-  bulletSpeed: 150
+  bulletSpeed: 180
   automatic: 0
   fireRate: 0.25
 --- !u!1001 &2041584407

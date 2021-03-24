@@ -23,6 +23,11 @@ public class Level1Controller : MonoBehaviour
     private List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
 
+    // for changing bullet speeds
+    GameObject referenceObject;
+    ProjectileGun referenceScript;
+
+
     // for checking when the level's been beat
     private int numTargets = 20;
     private void spawnTargets()
@@ -73,6 +78,15 @@ public class Level1Controller : MonoBehaviour
         {
             functionIndex = -1;
         }
+        // sets projectile speed according to target size
+        if (index == 0)
+        {
+            referenceScript.bulletSpeed = 300f;
+        }
+        else {
+            referenceScript.bulletSpeed = 150f;
+        }
+
         if (functionIndex == 0)
         {
             spawnTargetsH1(index);
@@ -661,6 +675,8 @@ public class Level1Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        referenceObject = GameObject.FindGameObjectWithTag("Player");
+        referenceScript = referenceObject.GetComponent<ProjectileGun>();
         spawnTargets();
         Manager = GetComponent<Manager>();
     }
@@ -676,12 +692,7 @@ public class Level1Controller : MonoBehaviour
         // Repeats level
         if (Input.GetKeyDown(KeyCode.R))
         {
-            foreach (GameObject obj in spawnedTargets)
-            {
-                Destroy(obj);
-            }
-            spawnedTargets.Clear();
-            spawnTargets();
+            repeatSubLevel();
         }
         // Clears targets
         if (Input.GetKeyDown(KeyCode.C))
@@ -706,6 +717,10 @@ public class Level1Controller : MonoBehaviour
         // returns true if game has been beaten or lost
         if (Manager.getGameStatus())
         {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Manager.resetSubLevel();
+                repeatSubLevel();
+            }
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 // resets the whole thing
@@ -721,6 +736,16 @@ public class Level1Controller : MonoBehaviour
         }
     }
 
+
+    private void repeatSubLevel() {
+        Manager.targetsHit = 0;
+        foreach (GameObject obj in spawnedTargets)
+        {
+            Destroy(obj);
+        }
+        spawnedTargets.Clear();
+        spawnTargets();
+    }
     private void nextLevel()
     {
 

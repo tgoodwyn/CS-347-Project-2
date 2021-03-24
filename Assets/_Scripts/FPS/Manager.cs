@@ -65,6 +65,16 @@ public class Manager : MonoBehaviour
         gameBeatenText.SetActive(true);
     }
 
+    public void resetSubLevel()
+    {
+        paused = false;
+        gameFinished = false;
+        gameBeatenText.SetActive(false);
+        gameOverText.SetActive(false);
+        timeValue = 30.0f;
+        shotsValue = 0;
+    }
+
     public void resetGame()
     {
         paused = false;
@@ -76,6 +86,7 @@ public class Manager : MonoBehaviour
         shotsValue = 0;
 
     }
+
 
     // getters
     public bool getGameStatus()
