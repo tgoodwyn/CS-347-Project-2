@@ -1588,7 +1588,7 @@ MonoBehaviour:
   bullet: {fileID: 1249689949446563703, guid: bf2bc7c5b5517be49891365bce0d3b11, type: 3}
   BulletSpawnPoint: {fileID: 1751482214}
   cam: {fileID: 3349675}
-  bulletSpeed: 300
+  bulletSpeed: 150
   automatic: 0
   fireRate: 0.25
 --- !u!1001 &2041584407
