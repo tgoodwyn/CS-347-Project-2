@@ -1563,8 +1563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505b6b0456c8f6c43936ac3c6b7a0b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 30
-  mouseYSensitivity: 30
+  mouseSensitivity: 15
+  mouseYSensitivity: 15
   managed: 1
   manager: {fileID: 1370617341}
 --- !u!4 &2023672067 stripped
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   bullet: {fileID: 1249689949446563703, guid: bf2bc7c5b5517be49891365bce0d3b11, type: 3}
   BulletSpawnPoint: {fileID: 1751482214}
   cam: {fileID: 3349675}
-  bulletSpeed: 150
+  bulletSpeed: 300
   automatic: 0
   fireRate: 0.25
 --- !u!1001 &2041584407
