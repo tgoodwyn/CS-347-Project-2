@@ -1231,21 +1231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d542d2b959126e14ea3c6786d56ec544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sTargets:
-  - {fileID: 214367805646561849, guid: 9c0c30918a750044983d6736b2426686, type: 3}
-  - {fileID: 1186842511430321102, guid: 759ad8ad3b30c364cb8d726464eca775, type: 3}
-  - {fileID: 4382902388724964890, guid: 520403ed35d9efb459e18fcc4e4ce2dc, type: 3}
-  cTargets:
-  - {fileID: 1252117105613833081, guid: 331a6b25aa22f084ebeb77a63b271c60, type: 3}
-  - {fileID: 1371440408595277113, guid: a586528f3468ba24a8b6bfd3faa1881e, type: 3}
-  - {fileID: 4866088742038303867, guid: 1a4c7fc7f3c49cc4dbdb956ed468c795, type: 3}
-  tSpacings: 030000000200000002000000
-  tHeight1s: 0f0000000f0000000f000000
-  tHeight2s: 2d0000002300000019000000
-  z1s: f1fffffff6fffffffbffffff
-  z2s: 0f0000000a00000005000000
-  tsAngles: 1e0000001800000012000000
-  tsRadii: 19000000140000000f000000
 --- !u!1001 &1735879263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1578,8 +1563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505b6b0456c8f6c43936ac3c6b7a0b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 60
-  mouseYSensitivity: 60
+  mouseSensitivity: 30
+  mouseYSensitivity: 30
   managed: 1
   manager: {fileID: 1370617341}
 --- !u!4 &2023672067 stripped
@@ -1603,8 +1588,8 @@ MonoBehaviour:
   bullet: {fileID: 1249689949446563703, guid: bf2bc7c5b5517be49891365bce0d3b11, type: 3}
   BulletSpawnPoint: {fileID: 1751482214}
   cam: {fileID: 3349675}
-  bulletSpeed: 300
-  automatic: 1
+  bulletSpeed: 150
+  automatic: 0
   fireRate: 0.25
 --- !u!1001 &2041584407
 PrefabInstance:

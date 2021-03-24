@@ -747,6 +747,11 @@ public class Level1Controller : MonoBehaviour
     {
         // resets the whole thing
         eIncrementor = 0;
+        foreach (GameObject obj in spawnedTargets)
+        {
+            Destroy(obj);
+        }
+        spawnedTargets.Clear();
         Manager.resetGame();
         spawnTargets();
     }
