@@ -26,6 +26,7 @@ public class Manager : MonoBehaviour
         scoreValue = 0;
         timeValue = 30.0f;
         shotsValue = 0;
+        paused = false;
     }
 
     void Update()
