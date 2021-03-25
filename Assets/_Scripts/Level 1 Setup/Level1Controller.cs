@@ -690,7 +690,7 @@ public class Level1Controller : MonoBehaviour
             nextLevel();
         }
         // Repeats level
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             repeatSubLevel();
         }
