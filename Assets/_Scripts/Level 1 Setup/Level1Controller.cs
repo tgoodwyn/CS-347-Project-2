@@ -79,13 +79,13 @@ public class Level1Controller : MonoBehaviour
             functionIndex = -1;
         }
         // sets projectile speed according to target size
-        if (index == 0)
+        /*if (index == 0)
         {
             referenceScript.bulletSpeed = 300f;
         }
         else {
             referenceScript.bulletSpeed = 150f;
-        }
+        }*/
 
         if (functionIndex == 0)
         {
