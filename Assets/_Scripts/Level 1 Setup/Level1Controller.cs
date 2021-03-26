@@ -453,50 +453,15 @@ public class Level1Controller : MonoBehaviour
                 rgPosZs[i] = (int)pos.z;
                 rgPosXs[i] = (int)pos.x;
             }
-            if (i == 0)
-            {
-                pos.y = 14.25f;
-                GameObject head1 = Instantiate(target, pos, Quaternion.identity);
-                spawnedTargets.Add(head1);
-                pos.y = 6.5f;
-                GameObject body1 = Instantiate(bTarget, pos, Quaternion.identity);
-                spawnedTargets.Add(body1);
-            }
-            else if (i == 1)
-            {
-                pos.y = 14.25f;
-                GameObject head2 = Instantiate(target, pos, Quaternion.identity);
-                spawnedTargets.Add(head2);
-                pos.y = 6.5f;
-                GameObject body2 = Instantiate(bTarget, pos, Quaternion.identity);
-                spawnedTargets.Add(body2);
-            }
-            else if (i == 2)
-            {
-                pos.y = 14.25f;
-                GameObject head3 = Instantiate(target, pos, Quaternion.identity);
-                spawnedTargets.Add(head3);
-                pos.y = 6.5f;
-                GameObject body3 = Instantiate(bTarget, pos, Quaternion.identity);
-                spawnedTargets.Add(body3);
-            }
-            else if (i == 3)
-            {
-                pos.y = 14.25f;
-                GameObject head4 = Instantiate(target, pos, Quaternion.identity);
-                spawnedTargets.Add(head4);
-                pos.y = 6.5f;
-                GameObject body4 = Instantiate(bTarget, pos, Quaternion.identity);
-                spawnedTargets.Add(body4);
-            }
-            else if (i == 4) {
-                pos.y = 14.25f;
-                GameObject head5 = Instantiate(target, pos, Quaternion.identity);
-                spawnedTargets.Add(head5);
-                pos.y = 6.5f;
-                GameObject body5 = Instantiate(bTarget, pos, Quaternion.identity);
-                spawnedTargets.Add(body5);
-            }
+
+            pos.y = 14.25f;
+            GameObject instantiated = Instantiate(target, pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated);
+            pos.y = 6.5f;
+            GameObject instantiated2 = Instantiate(bTarget, pos, Quaternion.identity);
+            spawnedTargets.Add(instantiated2);
+
+            
 
         }
         void rgUniqueCoords()

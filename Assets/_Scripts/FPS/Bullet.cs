@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     {
         referenceObject = GameObject.FindGameObjectWithTag("Manager");
         referenceScript = referenceObject.GetComponent<Level1Controller>();
-        spawnedTargets=referenceScript.spawnedTargets;
+        spawnedTargets = referenceScript.spawnedTargets;
         Destroy(gameObject, TimeToLive);
     }
 
@@ -24,7 +24,11 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             foreach (GameObject obj in spawnedTargets)
             {
-               
+                print(obj.transform.position);
+                if (obj.transform.position[0]==other.gameObject.transform.position[0])
+                {
+                    Destroy(obj);
+                }
             }
         }
         else if (other.tag == "Obstacle")
