@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             foreach (GameObject obj in spawnedTargets)
             {
-                
+               
             }
         }
         else if (other.tag == "Obstacle")
