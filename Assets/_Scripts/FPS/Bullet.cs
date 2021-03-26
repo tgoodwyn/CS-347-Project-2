@@ -21,16 +21,16 @@ public class Bullet : MonoBehaviour
         if (other.tag == "Target")
         {
             Manager.targetsHit++;
-            GameObject clone = other.gameObject;
+            //GameObject clone = other.gameObject;
             Destroy(other.gameObject);
-            foreach (GameObject obj in spawnedTargets)
+            /*foreach (GameObject obj in spawnedTargets)
             {
                 print(obj.transform.position);
                 if (obj.transform.position[0]==clone.gameObject.transform.position[0])
                 {
                     Destroy(obj);
                 }
-            }
+            }*/
             
         }
         else if (other.tag == "Obstacle")
