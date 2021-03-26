@@ -7,18 +7,19 @@ using UnityEngine;
 public class Level1Controller : MonoBehaviour
 {
     public GameObject target;  // Spherical target prefab array
+    public GameObject bTarget;
     private float tRadius = 1.75f;  // Spherical target radii, in the order they are to be spawned
     public int tSpacing = 2; // Inter-target spacing distances, in the order they are to be used
-    public int tHeight1 = 25; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
+    public int tHeight1 = 25; // Height3s at which bottom-most rows of targets are to be spawned, in the order they are to be used
     public int tHeight2 = 45; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
     public int z1 = -8;  // z coordinates of leftmost target columns
     public int z2 = 8 ;  // z coordinates of rightmost target columns
-    public int tcAngle = 24;
+    public int tcAngle = 30;
     public int tcRadius = 20;
 
 
     private Manager Manager;
-    private List<GameObject> spawnedTargets = new List<GameObject>();
+    public List<GameObject> spawnedTargets = new List<GameObject>();
     private int eIncrementor = 0;  // event incrementor
 
 
@@ -60,23 +61,22 @@ public class Level1Controller : MonoBehaviour
         }
         else if (eIncrementor == 4)
         {
-            spawnTargetsD1();
+            spawnTargetsD2();
         }
         else if (eIncrementor == 5)
         {
-            spawnTargetsD2();
+            spawnTargetsC1();
         }
         else if (eIncrementor == 6)
         {
-            spawnTargetsC1();
+            spawnTargetsC2();
         }
         else if (eIncrementor == 7)
         {
-            spawnTargetsC2();
-        }
-        else if (eIncrementor == 8)
-        {
             spawnTargetsRP1();
+        }
+        else if (eIncrementor == 8) {
+            spawnTargetsRP3();
         }
     }
 
@@ -105,12 +105,12 @@ public class Level1Controller : MonoBehaviour
         int rngMTSpacing = 10;
         int[] rngTSpacings = new int[12];
         int tSpacingDistance = 0;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 4; i++)
         {
             rngTSpacings[i] = Random.Range(1, rngMTSpacing);
             tSpacingDistance += rngTSpacings[i];
         }
-        for (int i = 6; i < 12; i++)
+        for (int i = 4; i < 8; i++)
         {
             rngTSpacings[i] = Random.Range(1, rngMTSpacing);
         }
@@ -118,20 +118,20 @@ public class Level1Controller : MonoBehaviour
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         Vector3 pos2 = new Vector3(65, tHeight2, startingPosition);
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 5; i++)
         {
             GameObject instantiated = Instantiate(target, pos, Quaternion.identity);
             GameObject instantiated2 = Instantiate(target, pos2, Quaternion.identity);
             spawnedTargets.Add(instantiated);
             spawnedTargets.Add(instantiated2);
-            if (i < 6)
+            if (i < 4)
             {
                 pos.z += 2 * tRadius + rngTSpacings[i];
-                pos2.z += 2 * tRadius + rngTSpacings[i + 6];
+                pos2.z += 2 * tRadius + rngTSpacings[i + 4];
             }
 
         }
-        numTargets = 14;
+        numTargets = 10;
     }
 
     // Spawns spherical targets in 2 lines extending vertically, constant spacing between targets
@@ -157,27 +157,27 @@ public class Level1Controller : MonoBehaviour
         int rngMTSpacing = 10;
         Vector3 pos = new Vector3(65, 5, z1);
         Vector3 pos2 = new Vector3(65, 5, z2);
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 5; i++)
         {
             GameObject instantiated = Instantiate(target, pos, Quaternion.identity);
             GameObject instantiated2 = Instantiate(target, pos2, Quaternion.identity);
             spawnedTargets.Add(instantiated);
             spawnedTargets.Add(instantiated2);
-            if (i < 9)
+            if (i < 4)
             {
                 pos.y += 2 * tRadius + Random.Range(1, rngMTSpacing);
                 pos2.y += 2 * tRadius + Random.Range(1, rngMTSpacing);
             }
 
         }
-        numTargets = 14;
+        numTargets = 10;
     }
 
     // Spawns spherical targets diagonally in a squished X pattern, constant spacing between targets
     private void spawnTargetsD1()
     {
-        float zIncrement = .9285f;
-        float yIncrement = .3714f;
+        float zIncrement = .866f;
+        float yIncrement = .5f;
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(target, pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -221,9 +221,9 @@ public class Level1Controller : MonoBehaviour
     // Spawns spherical targets diagonally in a squished X pattern, random spacing between targets
     private void spawnTargetsD2()
     {
-        int lTCount = 4; 
-        float zIncrement = .9285f;
-        float yIncrement = .3714f;
+        int lTCount = 3; 
+        float zIncrement = .866f;
+        float yIncrement = .5f;
         Vector3 pos = new Vector3(65, 32, 0);
         GameObject centerTarget = Instantiate(target, pos, Quaternion.identity);
         spawnedTargets.Add(centerTarget);
@@ -291,7 +291,7 @@ public class Level1Controller : MonoBehaviour
     {
         Vector3 cirleCenter = new Vector3(65, 32, 0);
         Vector3 pos = new Vector3(65, 0, 0);
-        int tQuantity =  9;
+        int tQuantity =  8;
         int rngTCAngle = 7;
         int angle = 0;
         for (int i = 0; i < tQuantity; i++)
@@ -400,10 +400,10 @@ public class Level1Controller : MonoBehaviour
     }
     */
     // Test level, spawns spherical targets at random x,y,z coordinates
-    private void spawnTargetsRP3(int index)
+    private void spawnTargetsRP3()
     {
-        int tQuantity = 16;
-        int[] distanceThresholds = { 15, 10, 7 };
+        int tQuantity = 10;
+        int distanceThreshold= 7;
         Vector3 pos = new Vector3(65, 0, 0);
         int[] rgPosZs = new int[tQuantity - 1];
         int[] rgPosYs = new int[tQuantity - 1];
@@ -423,13 +423,90 @@ public class Level1Controller : MonoBehaviour
         }
         void rgUniqueCoords()
         {
-            pos.x = Random.Range(65, -20);
-            pos.z = Random.Range(-80, 80);
+            pos.x = Random.Range(20, 65);
+            pos.z = Random.Range(-60, 60);
             pos.y = 32 + Random.Range(-25, 20);
             for (int i = 0; i < tQuantity - 1; i++)
             {
                 float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2) + Mathf.Pow(pos.x - rgPosXs[i], 2));
-                if (distance < distanceThresholds[index])
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+        numTargets = tQuantity;
+    }
+
+    private void spawnTargetsHuman1() {
+        int tQuantity = 5;
+        int distanceThreshold = 20;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosXs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosXs[i] = (int)pos.x;
+            }
+            if (i == 0)
+            {
+                pos.y = 14.25f;
+                GameObject head1 = Instantiate(target, pos, Quaternion.identity);
+                spawnedTargets.Add(head1);
+                pos.y = 6.5f;
+                GameObject body1 = Instantiate(bTarget, pos, Quaternion.identity);
+                spawnedTargets.Add(body1);
+            }
+            else if (i == 1)
+            {
+                pos.y = 14.25f;
+                GameObject head2 = Instantiate(target, pos, Quaternion.identity);
+                spawnedTargets.Add(head2);
+                pos.y = 6.5f;
+                GameObject body2 = Instantiate(bTarget, pos, Quaternion.identity);
+                spawnedTargets.Add(body2);
+            }
+            else if (i == 2)
+            {
+                pos.y = 14.25f;
+                GameObject head3 = Instantiate(target, pos, Quaternion.identity);
+                spawnedTargets.Add(head3);
+                pos.y = 6.5f;
+                GameObject body3 = Instantiate(bTarget, pos, Quaternion.identity);
+                spawnedTargets.Add(body3);
+            }
+            else if (i == 3)
+            {
+                pos.y = 14.25f;
+                GameObject head4 = Instantiate(target, pos, Quaternion.identity);
+                spawnedTargets.Add(head4);
+                pos.y = 6.5f;
+                GameObject body4 = Instantiate(bTarget, pos, Quaternion.identity);
+                spawnedTargets.Add(body4);
+            }
+            else if (i == 4) {
+                pos.y = 14.25f;
+                GameObject head5 = Instantiate(target, pos, Quaternion.identity);
+                spawnedTargets.Add(head5);
+                pos.y = 6.5f;
+                GameObject body5 = Instantiate(bTarget, pos, Quaternion.identity);
+                spawnedTargets.Add(body5);
+            }
+
+        }
+        void rgUniqueCoords()
+        {
+            pos.x = Random.Range(20, 65);
+            pos.z = Random.Range(-70, 70);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.x - rgPosXs[i], 2));
+                if (distance < distanceThreshold)
                 {
                     rgUniqueCoords();
                 }
@@ -474,9 +551,10 @@ public class Level1Controller : MonoBehaviour
             foreach (GameObject obj in spawnedTargets)
             {
                 Destroy(obj);
+                print(obj.name);
             }
             spawnedTargets.Clear();
-            spawnTargetsRP3(1);
+            spawnTargetsHuman1();
         }
 
         // returns true if game has been beaten or lost

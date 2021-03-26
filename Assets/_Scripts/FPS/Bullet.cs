@@ -5,9 +5,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float TimeToLive = 5f;
-    
+    GameObject referenceObject;
+    Level1Controller referenceScript;
+    List<GameObject> spawnedTargets;
     private void Start()
     {
+        referenceObject = GameObject.FindGameObjectWithTag("Manager");
+        referenceScript = referenceObject.GetComponent<Level1Controller>();
+        spawnedTargets=referenceScript.spawnedTargets;
         Destroy(gameObject, TimeToLive);
     }
 
@@ -17,6 +22,10 @@ public class Bullet : MonoBehaviour
         {
             Manager.targetsHit++;
             Destroy(other.gameObject);
+            foreach (GameObject obj in spawnedTargets)
+            {
+                
+            }
         }
         else if (other.tag == "Obstacle")
         {
