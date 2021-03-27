@@ -20,7 +20,7 @@ public class Level1Controller : MonoBehaviour
 
     private Manager Manager;
     public List<GameObject> spawnedTargets = new List<GameObject>();
-    private int eIncrementor = 0;  // event incrementor
+    public int eIncrementor = 0;  // event incrementor
 
 
     // for checking when the level's been beat
@@ -75,8 +75,12 @@ public class Level1Controller : MonoBehaviour
         {
             spawnTargetsRP1();
         }
-        else if (eIncrementor == 8) {
+        else if (eIncrementor == 8)
+        {
             spawnTargetsRP3();
+        }
+        else if (eIncrementor == 9) {
+            spawnTargetsHuman1();
         }
     }
 
