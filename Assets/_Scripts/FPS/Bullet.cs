@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     Level1Controller referenceScript;
     List<GameObject> spawnedTargets;
     int eIncrementor;
+
     private void Start()
     {
         referenceObject = GameObject.FindGameObjectWithTag("Manager"); // reference to Manager object
@@ -22,23 +23,33 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "Target")
         {
-            if ( 9 == 9)   // temporarily set to always, press t to enter this level
+            if ( 3 == 30)   // temporarily set to always, press t to enter this level
             {
                 Manager.targetsHit++;
                 float otherXCoord = other.gameObject.transform.position[0]; // save X and Z coordinates of hit target
                 float otherZCoord = other.gameObject.transform.position[2];
-
+                spawnedTargets.Remove(other.gameObject);
+                Destroy(other.gameObject);
                 foreach (GameObject obj in spawnedTargets) {   
-                    if (obj.transform.position[0] == otherXCoord && obj.transform.position[2] == otherZCoord) { // if both x and z coordinates match, they belong to the same target sets
+                    if (obj!=null && obj.transform.position[0] == otherXCoord && obj.transform.position[2] == otherZCoord) { // if both x and z coordinates match, they belong to the same target sets
                         Destroy(obj); // always at least 1 target set remains, not sure why
-                        // spawnedTargets.Remove(obj); - when this line is added, only the hit target is detonated 
+                        Debug.Log(obj);
+                        // ; - when this line is added, only the hit target is detonated 
                     }
                 }
+            }
+            else if (eIncrementor > 13)
+            {
+                Manager.targetsHit++;
+                Destroy(other.gameObject);
+                Level1Controller.tDestructionTimes.Add(Time.time);
+                referenceScript.psNextTarget();
             }
             else
             {
                 Manager.targetsHit++;
                 Destroy(other.gameObject);
+                Level1Controller.tDestructionTimes.Add(Time.time);
             }
             
         }

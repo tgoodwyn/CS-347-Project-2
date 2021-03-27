@@ -12,10 +12,22 @@ public class Manager : MonoBehaviour
     public Text scoreTextValue;
     public Text shotsTextValue;
     public Text timeTextValue;
+    public Text tDestroyedTextValue;
+    public Text accuracyTextValue;
+    public Text minTBetweenTargetsTextValue;
+    public Text maxTBetweenTargetsTextValue;
+    public Text avgTBetweenTargetsTextValue;
+    public Text sdTBetweenTargetsTextValue;
 
     public static int scoreValue;
     public static int shotsValue;
     public static float timeValue;
+    public static int tDestroyedValue;
+    public static float accuracyValue;
+    public static float minTBetweenTargetsValue;
+    public static float maxTBetweenTargetsValue;
+    public static float avgTBetweenTargetsValue;
+    public static float sdTBetweenTargetsValue;
 
     public GameObject gameOverText;
     public GameObject gameBeatenText;
@@ -44,7 +56,7 @@ public class Manager : MonoBehaviour
 
         if (timeValue <= 0f)
         {
-            Debug.Log("Game over");
+            //Debug.Log("Game over");
             gameFinished = true;
             paused = true;
             gameOverText.SetActive(true);

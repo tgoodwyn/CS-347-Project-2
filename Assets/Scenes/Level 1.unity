@@ -1097,6 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4382902388724964890, guid: b55dec55485e25c42b0a267ecb81e33b, type: 3}
   bTarget: {fileID: 5846978132994187853, guid: 3b3140e2496d7864485d6ce3a2f5cdb8, type: 3}
+  l1c: {fileID: 0}
   tSpacing: 2
   tHeight1: 25
   tHeight2: 45
@@ -1105,6 +1106,26 @@ MonoBehaviour:
   tcAngle: 24
   tcRadius: 20
   spawnedTargets: []
+  eIncrementor: 0
+--- !u!114 &1370617344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370617340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e44b808a5081aa48b3b9fd2e9975b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tSpacing: 2
+  tHeight1: 25
+  tHeight2: 45
+  z1: -8
+  z2: 8
+  tcAngle: 30
+  tcRadius: 20
 --- !u!4 &1386676892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3587704426055984233, guid: 6f4bc2f764f494643aa05bae3e1a2716,
