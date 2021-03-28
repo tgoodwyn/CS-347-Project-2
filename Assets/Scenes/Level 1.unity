@@ -1103,7 +1103,7 @@ MonoBehaviour:
   tHeight2: 45
   z1: -8
   z2: 8
-  tcAngle: 24
+  tcAngle: 30
   tcRadius: 20
   spawnedTargets: []
   eIncrementor: 0

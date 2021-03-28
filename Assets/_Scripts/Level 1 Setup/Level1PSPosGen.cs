@@ -15,7 +15,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent1PosGen() {
         int tQuantity = 15;
         float tandsDistance = tRadius * 2 * 5 + tSpacing * 9; // target and spacing combined distance covered
-        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizonatally centered
+        float startingPosition = -180 + (360 - tandsDistance) / 2 + tRadius;  // where first sphere is to be placed, computed such that rows are horizonatally centered
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         for (int i = 0; i < 8; i++)
         {
@@ -40,7 +40,7 @@ public class Level1PSPosGen : MonoBehaviour
             tSpacingDistance += rngTSpacings[i];
         }
         float tandsDistance = tRadius * 2 + tSpacingDistance;
-        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
+        float startingPosition = -180 + (360 - tandsDistance) / 2 + tRadius;
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         for (int i = 0; i < tQuantity / 2; i++)
         {
@@ -69,7 +69,7 @@ public class Level1PSPosGen : MonoBehaviour
         int tQuantity = 15;
         int tSpacingM = 2;
         float tandsDistance = tRadius * 2 + tSpacingM * 7; // target and spacing combined distance covered
-        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizonatally centered
+        float startingPosition = -180 + (360 - tandsDistance) / 2 + tRadius;  // where first sphere is to be placed, computed such that rows are horizonatally centered
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         for (int i = 0; i < 8; i++)
         {
@@ -86,7 +86,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent4PosGen()
     {
         int tQuantity = 16;  // only evens
-        float rngMTSpacing = 4.0f;
+        float rngMTSpacing = 4.5f;
         float[] rngTSpacings = new float[tQuantity / 2 - 1];
         float tSpacingDistance = 0;
         for (int i = 0; i < tQuantity / 2 - 1; i++)
@@ -94,8 +94,8 @@ public class Level1PSPosGen : MonoBehaviour
             rngTSpacings[i] = Random.Range(0.5f, rngMTSpacing);
             tSpacingDistance += rngTSpacings[i];
         }
-        float tandsDistance = tRadius * 2 * tQuantity/2 + tSpacingDistance;
-        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
+        float tandsDistance = tRadius * 2 + tSpacingDistance;
+        float startingPosition = -180 + (360 - tandsDistance) / 2 + tRadius;
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         for (int i = 0; i < tQuantity / 2; i++)
         {
@@ -181,7 +181,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent8PosGen()
     {
         int tQuantity = 14;
-        float rngMTSpacing = 4.0f;
+        float rngMTSpacing = 4.5f;
         Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 7; i++)
         {
@@ -205,8 +205,230 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent9PosGen()
     {
-        int tQuantity = 14;
-        float
+        int tQuantity = 20;
+        int tSpacingM = 7;
+        int yDelta = 7;
+        Vector3 pos = new Vector3(65, 25-yDelta, -(10*tSpacingM+2*tRadius)/2+tRadius);
+        for (int i = 0; i < 10; i++)
+        {
+            Level1Controller.psEvent9Positions.Add(pos);
+            pos.z += tSpacingM;
+            if (i % 2 == 0)
+            {
+                pos.y = 25 + yDelta;
+            }
+            else
+            {
+                pos.y = 25 - yDelta;
+            }
+        }
+        pos.z -= 2*tSpacingM;
+        for (int i = 0; i < 10; i++)
+        {
+            Level1Controller.psEvent9Positions.Add(pos);
+            pos.z -= tSpacingM;
+            if (i % 2 == 0)
+            {
+                pos.y = 25 + yDelta;
+            }
+            else
+            {
+                pos.y = 25 - yDelta;
+            }
+        }
+    }
+
+    public void psEvent10PosGen()
+    {
+        int tQuantity = 20;
+        float rngMTSpacingZ = 8.0f;
+        float rngMTSpacingY = 10.0f;
+        Vector3 pos = new Vector3(65, 25, -(10 * rngMTSpacingZ/2 + 2 * tRadius) / 2 + tRadius);
+        for (int i = 0; i < 10; i++)
+        {
+            Level1Controller.psEvent10Positions.Add(pos);
+            pos.z += Random.Range(.5f, rngMTSpacingZ);
+            pos.y = 25 + Random.Range(-rngMTSpacingY, rngMTSpacingY);
+        }
+        pos.z -= Random.Range(.5f,rngMTSpacingZ);
+        for (int i = 0; i < 10; i++)
+        {
+            Level1Controller.psEvent10Positions.Add(pos);
+            pos.z -= Random.Range(.5f, rngMTSpacingZ);
+            pos.y = 25 + Random.Range(-rngMTSpacingY, rngMTSpacingY);
+        }
+    }
+
+    public void psEvent11PosGen()
+    {
+        Vector3 circleCenter = new Vector3(65, 32, 0);
+        Vector3 pos = new Vector3(65, 0, 0);
+        for (int i = 0; i < 360 / tcAngle; i++)
+        {
+            pos.z = tcRadius * Mathf.Cos(tcAngle * Mathf.Deg2Rad * i);
+            pos.y = 32 + tcRadius * Mathf.Sin(tcAngle * Mathf.Deg2Rad * i);
+            Level1Controller.psEvent11Positions.Add(pos);
+        }
+    }
+
+    public void psEvent12PosGen()
+    {
+        Vector3 cirleCenter = new Vector3(65, 32, 0);
+        Vector3 pos = new Vector3(65, 0, 0);
+        int tQuantity = 8;
+        int rngTCAngle = 7;
+        int angle = 0;
+        for (int i = 0; i < tQuantity; i++)
+        {
+            int rf = Random.Range(1, 6);
+            int rAngle = rngTCAngle * rf;
+            pos.z = tcRadius * Mathf.Cos((angle + rAngle) * Mathf.Deg2Rad);
+            pos.y = 32 + tcRadius * Mathf.Sin((angle + rAngle) * Mathf.Deg2Rad);
+            Level1Controller.psEvent12Positions.Add(pos);
+            angle += tcAngle + rAngle;
+        }
+    }
+
+    public void psEvent13PosGen()
+    {
+        int tQuantity = 15;
+        int distanceThreshold = 5;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+
+            Level1Controller.psEvent13Positions.Add(pos);
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-60, 60);
+            pos.y = 32 + Random.Range(-20, 45);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+    }
+
+    public void psEvent14PosGen()
+    {
+        int tQuantity = 15;
+        int distanceThreshold = 5;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+
+            Level1Controller.psEvent14Positions.Add(pos);
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-30, 30);
+            pos.y = 32 + Random.Range(-20, 25);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+    }
+
+    public void psEvent15PosGen()
+    {
+        int tQuantity = 15;
+        int distanceThreshold = 5;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+
+            Level1Controller.psEvent15Positions.Add(pos);
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-15, 15);
+            pos.y = 32 + Random.Range(-15, 15);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+    }
+
+    public void psEvent16PosGen()
+    {
+        int tQuantity = 15;
+        float distanceThreshold = 1.5f;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+            }
+
+            Level1Controller.psEvent16Positions.Add(pos);
+        }
+        void rgUniqueCoords()
+        {
+            pos.z = Random.Range(-6, 6);
+            pos.y = 32 + Random.Range(-6, 6);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
+    }
+
+    public void psEvent17PosGen()
+    {
+        int tQuantity = 15;
+
     }
 
     // Start is called before the first frame update

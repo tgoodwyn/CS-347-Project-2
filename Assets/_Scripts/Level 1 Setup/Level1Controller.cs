@@ -18,10 +18,11 @@ public class Level1Controller : MonoBehaviour
     public int z2 = 8 ;  // z coordinates of rightmost target columns
     public int tcAngle = 30;
     public int tcRadius = 20;
+    Level1PSPosGen l1psposgen;
 
     public static int tn = 0;
 
-    public static List<Vector3> psEvent1Positions = new List<Vector3>(); // standard h                                  // might remove some levels
+    public static List<Vector3> psEvent1Positions = new List<Vector3>(); // standard h                                  
     public static List<Vector3> psEvent2Positions = new List<Vector3>(); // random h
     public static List<Vector3> psEvent3Positions = new List<Vector3>(); // smaller increments standard h
     public static List<Vector3> psEvent4Positions = new List<Vector3>(); // smaller increments random h
@@ -29,15 +30,17 @@ public class Level1Controller : MonoBehaviour
     public static List<Vector3> psEvent6Positions = new List<Vector3>(); // random v
     public static List<Vector3> psEvent7Positions = new List<Vector3>(); // smaller increments standard v
     public static List<Vector3> psEvent8Positions = new List<Vector3>(); // smaller increments random v
-    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // fixed horizontal spacing, random y position for each x
+    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // fixed horizontal spacing, fixed y distance alternating from center
     public static List<Vector3> psEvent10Positions = new List<Vector3>(); // random horizontal spacing, random y position for each x
     public static List<Vector3> psEvent11Positions = new List<Vector3>(); // standard c
     public static List<Vector3> psEvent12Positions = new List<Vector3>(); // random c
-    public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 10 in random area of size rp1
-    public static List<Vector3> psEvent14Positions = new List<Vector3>(); // 10 in random area of size rp2
-    public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 10 in random area of size rp3
-    public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 10 in small random area of radius 5
-    public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 10 spawned randomly such that next point is random distance from previous
+    public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 15 spawned randomly area of size rpu1
+    public static List<Vector3> psEvent14Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu2
+    public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu3
+    public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 15 spawned randmly in small area of radius 6
+    public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 15 spawned randomly /w diff distances from play in medium area of radius 15
+    public static List<Vector3> psEvent18Positions = new List<Vector3>(); // point that randomly moves from its current position, fixed x
+    public static List<Vector3> psEvent19Positions = new List<Vector3>(); // same as event 18 but with varying x = > different perceived sphere sizes
     
 
 
@@ -121,7 +124,6 @@ public class Level1Controller : MonoBehaviour
 
     private void genPSPos()
     {
-        Level1PSPosGen l1psposgen = GetComponent<Level1PSPosGen>();
         l1psposgen.psEvent1PosGen();
         l1psposgen.psEvent2PosGen();
         l1psposgen.psEvent3PosGen();
@@ -130,10 +132,17 @@ public class Level1Controller : MonoBehaviour
         l1psposgen.psEvent6PosGen();
         l1psposgen.psEvent7PosGen();
         l1psposgen.psEvent8PosGen();
+        l1psposgen.psEvent9PosGen();
+        l1psposgen.psEvent10PosGen();
+        l1psposgen.psEvent11PosGen();
+        l1psposgen.psEvent12PosGen();
+        l1psposgen.psEvent13PosGen();
+        l1psposgen.psEvent14PosGen();
+        l1psposgen.psEvent15PosGen();
+        l1psposgen.psEvent16PosGen();
     }
 
     public void psNextTarget() {
-        Level1PSPosGen l1psposgen = GetComponent<Level1PSPosGen>();
         if (eIncrementor == 14)
         {
             numTargets = psEvent1Positions.Count;
@@ -173,6 +182,46 @@ public class Level1Controller : MonoBehaviour
         {
             numTargets = psEvent8Positions.Count;
             psNextTargeti(psEvent8Positions);
+        }
+        else if (eIncrementor == 22)
+        {
+            numTargets = psEvent9Positions.Count;
+            psNextTargeti(psEvent9Positions);
+        }
+        else if (eIncrementor == 23)
+        {
+            numTargets = psEvent10Positions.Count;
+            psNextTargeti(psEvent10Positions);
+        }
+        else if (eIncrementor == 24)
+        {
+            numTargets = psEvent11Positions.Count;
+            psNextTargeti(psEvent11Positions);
+        }
+        else if (eIncrementor == 25)
+        {
+            numTargets = psEvent12Positions.Count;
+            psNextTargeti(psEvent12Positions);
+        }
+        else if (eIncrementor == 26)
+        {
+            numTargets = psEvent13Positions.Count;
+            psNextTargeti(psEvent13Positions);
+        }
+        else if (eIncrementor == 27)
+        {
+            numTargets = psEvent14Positions.Count;
+            psNextTargeti(psEvent14Positions);
+        }
+        else if (eIncrementor == 28)
+        {
+            numTargets = psEvent15Positions.Count;
+            psNextTargeti(psEvent15Positions);
+        }
+        else if (eIncrementor == 29)
+        {
+            numTargets = psEvent16Positions.Count;
+            psNextTargeti(psEvent16Positions);
         }
         
     }
@@ -668,7 +717,7 @@ public class Level1Controller : MonoBehaviour
         genPSPos();
         spawnTargets();
         Manager = GetComponent<Manager>();
-        
+        l1psposgen = GetComponent<Level1PSPosGen>();
     }
 
     // Update is called once per frame
