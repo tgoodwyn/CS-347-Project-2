@@ -222,7 +222,7 @@ public class Level1PSPosGen : MonoBehaviour
                 pos.y = 25 - yDelta;
             }
         }
-        pos.z -= 2*tSpacingM;
+        pos.z -= tSpacingM;
         for (int i = 0; i < 10; i++)
         {
             Level1Controller.psEvent9Positions.Add(pos);
@@ -233,7 +233,7 @@ public class Level1PSPosGen : MonoBehaviour
             }
             else
             {
-                pos.y = 25 - yDelta;
+                pos.y=25 - yDelta;
             }
         }
     }
@@ -428,6 +428,38 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent17PosGen()
     {
         int tQuantity = 15;
+        int distanceThreshold = 4;
+        Vector3 pos = new Vector3(65, 0, 0);
+        int[] rgPosZs = new int[tQuantity - 1];
+        int[] rgPosYs = new int[tQuantity - 1];
+        int[] rgPosXs = new int[tQuantity - 1];
+        for (int i = 0; i < tQuantity; i++)
+        {
+            rgUniqueCoords();
+            if (i != tQuantity - 1)
+            {
+                rgPosZs[i] = (int)pos.z;
+                rgPosYs[i] = (int)pos.y;
+                rgPosXs[i] = (int)pos.x;
+            }
+
+            Level1Controller.psEvent17Positions.Add(pos);
+        }
+        void rgUniqueCoords()
+        {
+            pos.x = Random.Range(20, 65);
+            pos.z = Random.Range(-20, 20);
+            pos.y = 32 + Random.Range(-20, 20);
+            for (int i = 0; i < tQuantity - 1; i++)
+            {
+                float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2) + Mathf.Pow(pos.x - rgPosXs[i], 2));
+                if (distance < distanceThreshold)
+                {
+                    rgUniqueCoords();
+                }
+
+            }
+        }
 
     }
 

@@ -38,7 +38,7 @@ public class Level1Controller : MonoBehaviour
     public static List<Vector3> psEvent14Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu2
     public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu3
     public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 15 spawned randmly in small area of radius 6
-    public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 15 spawned randomly /w diff distances from play in medium area of radius 15
+    public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 15 spawned randomly /w diff distances from player in medium area of radius 20
     public static List<Vector3> psEvent18Positions = new List<Vector3>(); // point that randomly moves from its current position, fixed x
     public static List<Vector3> psEvent19Positions = new List<Vector3>(); // same as event 18 but with varying x = > different perceived sphere sizes
     
@@ -714,10 +714,10 @@ public class Level1Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        l1psposgen = GetComponent<Level1PSPosGen>();
         genPSPos();
         spawnTargets();
         Manager = GetComponent<Manager>();
-        l1psposgen = GetComponent<Level1PSPosGen>();
     }
 
     // Update is called once per frame
