@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, TimeToLive);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Target")
         {
@@ -58,5 +58,6 @@ public class Bullet : MonoBehaviour
             Manager.timeValue = Manager.timeValue - 5;
             Destroy(other.gameObject);
         }
-    }
+    }*/
 }
+

@@ -63,6 +63,10 @@ public class Level1PSPosGen : MonoBehaviour
         }
     }
 
+    public void psEvent3PosGen()
+    {
+
+    }
     
 
     // Start is called before the first frame update

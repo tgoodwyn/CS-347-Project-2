@@ -25,11 +25,20 @@ public class ProjectileGun : MonoBehaviour
     // conditions for shooting
     bool triggerPulled, gunReady;
 
-
+    // For triggering the progressive spawn function in Level1Controller.cs
+    GameObject referenceObject;
+    Level1Controller referenceScript;
+    List<GameObject> spawnedTargets;
+    int eIncrementor;
 
     void Start()
     {
         gunReady = true;
+
+
+        referenceObject = GameObject.FindGameObjectWithTag("Manager"); // reference to Manager object
+        referenceScript = referenceObject.GetComponent<Level1Controller>(); // reference to Level1Controller attached to Manager
+        spawnedTargets = referenceScript.spawnedTargets; // reference to spawnedTargets of Level1Controller
     }
 
     void Update()
@@ -58,6 +67,9 @@ public class ProjectileGun : MonoBehaviour
 
     private void Shoot()
     {
+        eIncrementor = referenceScript.eIncrementor; // reference to eIncrementor of Level1Controller
+
+
         gunReady = false;
 
         // use the middle of the screen to cast a ray, 
@@ -67,10 +79,26 @@ public class ProjectileGun : MonoBehaviour
         // whatever it hits will be used to calculate the launch trajectory for the bullet
         Vector3 aimPoint;
         if (Physics.Raycast(ray, out hit))
+        {
             aimPoint = hit.point;
-        else // if it doesn't hit anything, just set a default point
-            aimPoint = ray.GetPoint(50); 
-
+            if (eIncrementor > 13)
+            {
+                Manager.targetsHit++;
+                Destroy(hit.transform.gameObject,.07f);
+                Level1Controller.tDestructionTimes.Add(Time.time);
+                referenceScript.psNextTarget();
+            }
+            else
+            {
+                Manager.targetsHit++;
+                Destroy(hit.transform.gameObject,.07f);
+                Level1Controller.tDestructionTimes.Add(Time.time);
+            }
+        }
+        else
+        { // if it doesn't hit anything, just set a default point
+            aimPoint = ray.GetPoint(50);
+        }
         //Calculate direction from spawn point to ray's hit.point
         Vector3 trajectory = aimPoint - BulletSpawnPoint.position;
 

@@ -221,7 +221,7 @@ public class Level1Controller : MonoBehaviour
             GameObject instantiated2 = Instantiate(target, pos2, Quaternion.identity);
             spawnedTargets.Add(instantiated);
             spawnedTargets.Add(instantiated2);
-            if (i < 4)
+            if (i < 6)
             {
                 pos.y += 2 * tRadius + Random.Range(1, rngMTSpacing);
                 pos2.y += 2 * tRadius + Random.Range(1, rngMTSpacing);
