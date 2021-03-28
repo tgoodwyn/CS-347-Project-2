@@ -51,7 +51,7 @@ public class Level1PSPosGen : MonoBehaviour
             }
 
         }
-        pos.z = pos.z - (2 * tRadius + Random.Range(1, rngMTSpacing));
+        pos.z -= (2 * tRadius + Random.Range(1, rngMTSpacing));
         for (int i = 0; i < tQuantity / 2; i++)
         {
             Level1Controller.psEvent2Positions.Add(pos);
@@ -66,7 +66,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent3PosGen()
     {
         int tQuantity = 9;
-        Vector3 pos = new Vector3(65, 20, z1);
+        Vector3 pos = new Vector3(65, 20, 0);
         for (int i = 0; i < 5; i++)
         {
             Level1Controller.psEvent3Positions.Add(pos);
@@ -81,6 +81,31 @@ public class Level1PSPosGen : MonoBehaviour
     }
 
     public void psEvent4PosGen()
+    {
+        int tQuantity = 14;
+        int rngMTSpacing = 14;
+        Vector3 pos = new Vector3(65, 5, 0);
+        for (int i = 0; i < 7; i++)
+        {
+            Level1Controller.psEvent4Positions.Add(pos);
+            if (i < 6)
+            {
+                pos.y += 2 * tRadius + Random.Range(1, rngMTSpacing);
+            }
+        }
+        pos.y -= 2 * tRadius + Random.Range(1, rngMTSpacing);
+        for (int i = 0; i < 7; i++)
+        {
+            Level1Controller.psEvent4Positions.Add(pos);
+            pos.y -= 2 * tRadius + Random.Range(1, rngMTSpacing);
+            if (pos.y < 5)
+            {
+                pos.y = 5;
+            }
+        }
+    }
+
+    public void psEvent5PosGen()
     {
 
     }

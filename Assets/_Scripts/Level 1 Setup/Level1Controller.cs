@@ -21,9 +21,20 @@ public class Level1Controller : MonoBehaviour
 
     public static int tn = 0;
 
-    public static List<Vector3> psEvent1Positions = new List<Vector3>();
-    public static List<Vector3> psEvent2Positions = new List<Vector3>();
-    public static List<Vector3> psEvent3Positions = new List<Vector3>(); 
+    public static List<Vector3> psEvent1Positions = new List<Vector3>(); // standard h
+    public static List<Vector3> psEvent2Positions = new List<Vector3>(); // random h
+    public static List<Vector3> psEvent3Positions = new List<Vector3>(); // standard v 
+    public static List<Vector3> psEvent4Positions = new List<Vector3>(); // random v
+    public static List<Vector3> psEvent5Positions = new List<Vector3>(); // standard d
+    public static List<Vector3> psEvent6Positions = new List<Vector3>(); // random d
+    public static List<Vector3> psEvent7Positions = new List<Vector3>(); // standard c
+    public static List<Vector3> psEvent8Positions = new List<Vector3>(); // random c
+    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // 10 in random area of size rp1
+    public static List<Vector3> psEvent10Positions = new List<Vector3>(); // 10 in random area of size rp2
+    public static List<Vector3> psEvent11Positions = new List<Vector3>(); // 10 in random area of size rp3
+    public static List<Vector3> psEvent12Positions = new List<Vector3>(); // 10 in small random area of radius 5
+    public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 10 spawned randomly such that next point is random distance from previous
+
 
 
     private Manager Manager;
@@ -110,6 +121,7 @@ public class Level1Controller : MonoBehaviour
         l1psposgen.psEvent1PosGen();
         l1psposgen.psEvent2PosGen();
         l1psposgen.psEvent3PosGen();
+        l1psposgen.psEvent4PosGen();
     }
 
     public void psNextTarget() {
@@ -127,6 +139,11 @@ public class Level1Controller : MonoBehaviour
         {
             numTargets = 9;
             psNextTargeti(psEvent3Positions);
+        }
+        else if (eIncrementor == 17)
+        {
+            numTargets = 14;
+            psNextTargeti(psEvent4Positions);
         }
         
     }
@@ -462,8 +479,8 @@ public class Level1Controller : MonoBehaviour
         }
         void rgUniqueCoords()
         {
-            pos.z = Random.Range(-20, 20);
-            pos.y = 32 + Random.Range(-10, 15);
+            pos.z = Random.Range(-15, 15);
+            pos.y = 32 + Random.Range(-15, 15);
             for (int i = 0; i < tQuantity - 1; i++)
             {
                 float distance = Mathf.Sqrt(Mathf.Pow(pos.z - rgPosZs[i], 2) + Mathf.Pow(pos.y - rgPosYs[i], 2));
