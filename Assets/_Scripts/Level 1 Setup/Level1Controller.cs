@@ -29,8 +29,8 @@ public class Level1Controller : MonoBehaviour
     public static List<Vector3> psEvent6Positions = new List<Vector3>(); // random v
     public static List<Vector3> psEvent7Positions = new List<Vector3>(); // smaller increments standard v
     public static List<Vector3> psEvent8Positions = new List<Vector3>(); // smaller increments random v
-    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // standard d
-    public static List<Vector3> psEvent10Positions = new List<Vector3>(); // random d
+    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // fixed horizontal spacing, random y position for each x
+    public static List<Vector3> psEvent10Positions = new List<Vector3>(); // random horizontal spacing, random y position for each x
     public static List<Vector3> psEvent11Positions = new List<Vector3>(); // standard c
     public static List<Vector3> psEvent12Positions = new List<Vector3>(); // random c
     public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 10 in random area of size rp1
@@ -38,7 +38,7 @@ public class Level1Controller : MonoBehaviour
     public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 10 in random area of size rp3
     public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 10 in small random area of radius 5
     public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 10 spawned randomly such that next point is random distance from previous
-
+    
 
 
     private Manager Manager;
@@ -126,28 +126,53 @@ public class Level1Controller : MonoBehaviour
         l1psposgen.psEvent2PosGen();
         l1psposgen.psEvent3PosGen();
         l1psposgen.psEvent4PosGen();
+        l1psposgen.psEvent5PosGen();
+        l1psposgen.psEvent6PosGen();
+        l1psposgen.psEvent7PosGen();
+        l1psposgen.psEvent8PosGen();
     }
 
     public void psNextTarget() {
+        Level1PSPosGen l1psposgen = GetComponent<Level1PSPosGen>();
         if (eIncrementor == 14)
         {
-            numTargets = 15;
+            numTargets = psEvent1Positions.Count;
             psNextTargeti(psEvent1Positions);
         }
         else if (eIncrementor == 15)
         {
-            numTargets = 16;
+            numTargets = psEvent2Positions.Count;
             psNextTargeti(psEvent2Positions);
         }
         else if (eIncrementor == 16)
         {
-            numTargets = 15;
+            numTargets = psEvent3Positions.Count;
             psNextTargeti(psEvent3Positions);
         }
         else if (eIncrementor == 17)
         {
-            numTargets = 16;
+            numTargets = psEvent4Positions.Count;
             psNextTargeti(psEvent4Positions);
+        }
+        else if (eIncrementor == 18)
+        {
+            numTargets = psEvent5Positions.Count;
+            psNextTargeti(psEvent5Positions);
+        }
+        else if (eIncrementor == 19)
+        {
+            numTargets = psEvent6Positions.Count;
+            psNextTargeti(psEvent6Positions);
+        }
+        else if (eIncrementor == 20)
+        {
+            numTargets = psEvent7Positions.Count;
+            psNextTargeti(psEvent7Positions);
+        }
+        else if (eIncrementor == 21)
+        {
+            numTargets = psEvent8Positions.Count;
+            psNextTargeti(psEvent8Positions);
         }
         
     }
@@ -164,8 +189,9 @@ public class Level1Controller : MonoBehaviour
     // Spawns spherical targets in 2 lines extending horizontally, constant spacing between targets
     private void spawnTargetsH1()
     {
-        float tandsDistance = tRadius * 2 * 5 + tSpacing * 9; // target and spacing combined distance covered
-        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizonatally centered
+        int tQuantity = 10;
+        float tandsDistance = tRadius * 2 * tQuantity/2 + tSpacing * (tQuantity/2 -1); // target and spacing combined distance covered
+        float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;  // where first sphere is to be placed, computed such that rows are horizontally centered
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         for (int i = 0; i < 5; i++)
         {
@@ -177,7 +203,7 @@ public class Level1Controller : MonoBehaviour
             spawnedTargets.Add(instantiated2);
             pos.z += 2 * tRadius + tSpacing;
         }
-        numTargets = 10;
+        numTargets = tQuantity;
     }
 
     // Spawns spherical targets in 2 lines extending horizontally, random spacing between targets
@@ -196,7 +222,7 @@ public class Level1Controller : MonoBehaviour
         {
             rngTSpacings[i] = Random.Range(1, rngMTSpacing);
         }
-        float tandsDistance = tRadius * 2 * 7 + tSpacingDistance;
+        float tandsDistance = tRadius * 2 * tQuantity/2 + tSpacingDistance;
         float startingPosition = -180 + (360 - tandsDistance) / 2 + 5;
         Vector3 pos = new Vector3(65, tHeight1, startingPosition);
         Vector3 pos2 = new Vector3(65, tHeight2, startingPosition);
@@ -391,7 +417,7 @@ public class Level1Controller : MonoBehaviour
     }
 
 
-    // Spawns spherical targets in a random arrangement, with y and z coordinates generated randomly but such that no 2 targets are within a set distance of one another
+    // Spawns spherical targets at fixed x coordinate in a random arrangement, with y and z coordinates generated randomly but such that no 2 targets are within a set distance of one another
     private void spawnTargetsRPU1()
     {
         int tQuantity = 10;
