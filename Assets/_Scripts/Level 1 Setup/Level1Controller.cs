@@ -152,6 +152,7 @@ public class Level1Controller : MonoBehaviour
         if (tn < psEventPositions.Count)
         {
             GameObject instantiated = Instantiate(target, psEventPositions[tn], Quaternion.identity);
+            spawnedTargets.Add(instantiated);
         }
         tn++;
     }
@@ -179,7 +180,7 @@ public class Level1Controller : MonoBehaviour
     private void spawnTargetsH2()
     {
         int tQuantity = 14;
-        int rngMTSpacing = 10;
+        int rngMTSpacing = 7;
         int[] rngTSpacings = new int[tQuantity-2];
         int tSpacingDistance = 0;
         for (int i = 0; i < tQuantity / 2 - 1; i++)
@@ -231,7 +232,7 @@ public class Level1Controller : MonoBehaviour
     // Spawns spherical targets in 2 lines extending vertically, random spacing between targets
     private void spawnTargetsV2()
     {
-        int rngMTSpacing = 14;
+        int rngMTSpacing = 10;
         Vector3 pos = new Vector3(65, 5, z1);
         Vector3 pos2 = new Vector3(65, 5, z2);
         for (int i = 0; i < 7; i++)

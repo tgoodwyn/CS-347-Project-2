@@ -30,7 +30,7 @@ public class Level1PSPosGen : MonoBehaviour
     }
     public void psEvent2PosGen()
     {
-        int tQuantity = 14;
+        int tQuantity = 7;
         int rngMTSpacing = 10;
         int[] rngTSpacings = new int[tQuantity/2-1];
         int tSpacingDistance = 0;
@@ -83,7 +83,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent4PosGen()
     {
         int tQuantity = 14;
-        int rngMTSpacing = 14;
+        int rngMTSpacing = 10;
         Vector3 pos = new Vector3(65, 5, 0);
         for (int i = 0; i < 7; i++)
         {
