@@ -12,7 +12,8 @@ public class Manager : MonoBehaviour
     public Text scoreTextValue;
     public Text shotsTextValue;
     public Text timeTextValue;
-    public Text tDestroyedTextValue;
+    public Text tHitTextValue;
+    public Text tRemainingTextValue;
     public Text accuracyTextValue;
     public Text minTBetweenTargetsTextValue;
     public Text maxTBetweenTargetsTextValue;

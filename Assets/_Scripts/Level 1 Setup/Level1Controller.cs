@@ -21,19 +21,23 @@ public class Level1Controller : MonoBehaviour
 
     public static int tn = 0;
 
-    public static List<Vector3> psEvent1Positions = new List<Vector3>(); // standard h
+    public static List<Vector3> psEvent1Positions = new List<Vector3>(); // standard h                                  // might remove some levels
     public static List<Vector3> psEvent2Positions = new List<Vector3>(); // random h
-    public static List<Vector3> psEvent3Positions = new List<Vector3>(); // standard v 
-    public static List<Vector3> psEvent4Positions = new List<Vector3>(); // random v
-    public static List<Vector3> psEvent5Positions = new List<Vector3>(); // standard d
-    public static List<Vector3> psEvent6Positions = new List<Vector3>(); // random d
-    public static List<Vector3> psEvent7Positions = new List<Vector3>(); // standard c
-    public static List<Vector3> psEvent8Positions = new List<Vector3>(); // random c
-    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // 10 in random area of size rp1
-    public static List<Vector3> psEvent10Positions = new List<Vector3>(); // 10 in random area of size rp2
-    public static List<Vector3> psEvent11Positions = new List<Vector3>(); // 10 in random area of size rp3
-    public static List<Vector3> psEvent12Positions = new List<Vector3>(); // 10 in small random area of radius 5
-    public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 10 spawned randomly such that next point is random distance from previous
+    public static List<Vector3> psEvent3Positions = new List<Vector3>(); // smaller increments standard h
+    public static List<Vector3> psEvent4Positions = new List<Vector3>(); // smaller increments random h
+    public static List<Vector3> psEvent5Positions = new List<Vector3>(); // standard v
+    public static List<Vector3> psEvent6Positions = new List<Vector3>(); // random v
+    public static List<Vector3> psEvent7Positions = new List<Vector3>(); // smaller increments standard v
+    public static List<Vector3> psEvent8Positions = new List<Vector3>(); // smaller increments random v
+    public static List<Vector3> psEvent9Positions = new List<Vector3>(); // standard d
+    public static List<Vector3> psEvent10Positions = new List<Vector3>(); // random d
+    public static List<Vector3> psEvent11Positions = new List<Vector3>(); // standard c
+    public static List<Vector3> psEvent12Positions = new List<Vector3>(); // random c
+    public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 10 in random area of size rp1
+    public static List<Vector3> psEvent14Positions = new List<Vector3>(); // 10 in random area of size rp2
+    public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 10 in random area of size rp3
+    public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 10 in small random area of radius 5
+    public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 10 spawned randomly such that next point is random distance from previous
 
 
 
@@ -127,22 +131,22 @@ public class Level1Controller : MonoBehaviour
     public void psNextTarget() {
         if (eIncrementor == 14)
         {
-            numTargets = 9;
+            numTargets = 15;
             psNextTargeti(psEvent1Positions);
         }
         else if (eIncrementor == 15)
         {
-            numTargets = 14;
+            numTargets = 16;
             psNextTargeti(psEvent2Positions);
         }
         else if (eIncrementor == 16)
         {
-            numTargets = 9;
+            numTargets = 15;
             psNextTargeti(psEvent3Positions);
         }
         else if (eIncrementor == 17)
         {
-            numTargets = 14;
+            numTargets = 16;
             psNextTargeti(psEvent4Positions);
         }
         
