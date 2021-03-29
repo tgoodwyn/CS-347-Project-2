@@ -121,7 +121,7 @@ public class Level1PSPosGen : MonoBehaviour
     public void psEvent5PosGen()
     {
         int tQuantity = 11;
-        Vector3 pos = new Vector3(65, 15, 0);
+        Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 6; i++)
         {
             Level1Controller.psEvent5Positions.Add(pos);
@@ -164,7 +164,7 @@ public class Level1PSPosGen : MonoBehaviour
     {
         int tQuantity = 11;
         int tSpacingM = 3;
-        Vector3 pos = new Vector3(65, 15, 0);
+        Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 6; i++)
         {
             Level1Controller.psEvent7Positions.Add(pos);
@@ -208,32 +208,32 @@ public class Level1PSPosGen : MonoBehaviour
         int tQuantity = 20;
         int tSpacingM = 7;
         int yDelta = 7;
-        Vector3 pos = new Vector3(65, 25-yDelta, -(10*tSpacingM+2*tRadius)/2+tRadius);
+        Vector3 pos = new Vector3(65, 32-yDelta, -(10*tSpacingM+2*tRadius)/2+tRadius);
         for (int i = 0; i < 10; i++)
         {
             Level1Controller.psEvent9Positions.Add(pos);
             pos.z += tSpacingM;
             if (i % 2 == 0)
             {
-                pos.y = 25 + yDelta;
+                pos.y = 32 + yDelta;
             }
             else
             {
-                pos.y = 25 - yDelta;
+                pos.y = 32 - yDelta;
             }
         }
-        pos.z -= tSpacingM;
+        pos.z -= 2*tSpacingM;
         for (int i = 0; i < 10; i++)
         {
             Level1Controller.psEvent9Positions.Add(pos);
             pos.z -= tSpacingM;
             if (i % 2 == 0)
             {
-                pos.y = 25 + yDelta;
+                pos.y = 32 + yDelta;
             }
             else
             {
-                pos.y=25 - yDelta;
+                pos.y=32 - yDelta;
             }
         }
     }
