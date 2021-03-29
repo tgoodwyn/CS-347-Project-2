@@ -37,7 +37,7 @@ public class Level1Controller : MonoBehaviour
     public static List<Vector3> psEvent13Positions = new List<Vector3>(); // 15 spawned randomly area of size rpu1
     public static List<Vector3> psEvent14Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu2
     public static List<Vector3> psEvent15Positions = new List<Vector3>(); // 15 spawned randomly in area of size rpu3
-    public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 15 spawned randmly in small area of radius 6
+    public static List<Vector3> psEvent16Positions = new List<Vector3>(); // 15 spawned randmly in small square with side lengths 12
     public static List<Vector3> psEvent17Positions = new List<Vector3>(); // 15 spawned randomly /w diff distances from player in medium area of radius 20
     public static List<Vector3> psEvent18Positions = new List<Vector3>(); // point that randomly moves from its current position, fixed x
     public static List<Vector3> psEvent19Positions = new List<Vector3>(); // same as event 18 but with varying x = > different perceived sphere sizes
@@ -140,6 +140,9 @@ public class Level1Controller : MonoBehaviour
         l1psposgen.psEvent14PosGen();
         l1psposgen.psEvent15PosGen();
         l1psposgen.psEvent16PosGen();
+        l1psposgen.psEvent17PosGen();
+        l1psposgen.psEvent18PosGen();
+        l1psposgen.psEvent19PosGen();
     }
 
     public void psNextTarget() {
@@ -222,6 +225,21 @@ public class Level1Controller : MonoBehaviour
         {
             numTargets = psEvent16Positions.Count;
             psNextTargeti(psEvent16Positions);
+        }
+        else if (eIncrementor == 30)
+        {
+            numTargets = psEvent17Positions.Count;
+            psNextTargeti(psEvent17Positions);
+        }
+        else if (eIncrementor == 31)
+        {
+            numTargets = psEvent18Positions.Count;
+            psNextTargeti(psEvent18Positions);
+        }
+        else if (eIncrementor == 32)
+        {
+            numTargets = psEvent19Positions.Count;
+            psNextTargeti(psEvent19Positions);
         }
         
     }
