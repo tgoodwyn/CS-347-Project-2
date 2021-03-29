@@ -6,7 +6,7 @@ public class Level1PSPosGen : MonoBehaviour
 {
     private float tRadius = 1.75f;  // Spherical target radii, in the order they are to be spawned
     public int tSpacing = 1; // Standard inter-target spacing distances, in the order they are to be used
-    public int tHeight1 = 25; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
+    public int tHeight1 = 30; // Heights at which bottom-most rows of targets are to be spawned, in the order they are to be used
     public int tHeight2 = 45; // Heights at which top-most rows of targets are to be spawned, in the order they are to be used
     public int z1 = -8;  // z coordinates of leftmost target columns
     public int z2 = 8;  // z coordinates of rightmost target columns

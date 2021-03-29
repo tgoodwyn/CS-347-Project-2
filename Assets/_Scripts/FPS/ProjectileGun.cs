@@ -84,14 +84,14 @@ public class ProjectileGun : MonoBehaviour
             if (eIncrementor > 13)
             {
                 Manager.targetsHit++;
-                Destroy(hit.transform.gameObject,.07f);
+                Destroy(hit.transform.gameObject,.025f);
                 Level1Controller.tDestructionTimes.Add(Time.time);
                 referenceScript.psNextTarget();
             }
             else
             {
                 Manager.targetsHit++;
-                Destroy(hit.transform.gameObject,.07f);
+                Destroy(hit.transform.gameObject,.025f);
                 Level1Controller.tDestructionTimes.Add(Time.time);
             }
         }

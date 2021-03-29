@@ -1119,8 +1119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e44b808a5081aa48b3b9fd2e9975b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tSpacing: 2
-  tHeight1: 25
+  tSpacing: 1
+  tHeight1: 30
   tHeight2: 45
   z1: -8
   z2: 8
