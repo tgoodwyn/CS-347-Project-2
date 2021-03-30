@@ -233,7 +233,7 @@ public class Manager : MonoBehaviour
         }
         avgTBetweenTargetsValue = sumOfBTIs / betweenTargetIntervals.Count;
 
-        // Computers SD
+        // Computes SD
         float sqDiffSum = 0;
         for (int i = 0; i < betweenTargetIntervals.Count; i++)
         {
