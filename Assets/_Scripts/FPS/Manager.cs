@@ -85,6 +85,10 @@ public class Manager : MonoBehaviour
             paused = true;
             gameOverText.SetActive(true);
         } 
+        else if (ready == false)
+        {
+
+        }
         else
         {
             timeValue = timeValue - Time.deltaTime;
