@@ -66,7 +66,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent3PosGen()
     {
-        int tQuantity = 15;
+        //int tQuantity = 15;
         int tSpacingM = 2;
         float tandsDistance = tRadius * 2 + tSpacingM * 7; // target and spacing combined distance covered
         float startingPosition = -180 + (360 - tandsDistance) / 2 + tRadius;  // where first sphere is to be placed, computed such that rows are horizonatally centered
@@ -120,7 +120,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent5PosGen()
     {
-        int tQuantity = 11;
+        //int tQuantity = 11;
         Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 6; i++)
         {
@@ -137,7 +137,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent6PosGen()
     {
-        int tQuantity = 14;
+        //int tQuantity = 14;
         int rngMTSpacing = 10;
         Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 7; i++)
@@ -162,7 +162,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent7PosGen()
     {
-        int tQuantity = 11;
+        //int tQuantity = 11;
         int tSpacingM = 3;
         Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 6; i++)
@@ -180,7 +180,7 @@ public class Level1PSPosGen : MonoBehaviour
     
     public void psEvent8PosGen()
     {
-        int tQuantity = 14;
+        //int tQuantity = 14;
         float rngMTSpacing = 4.5f;
         Vector3 pos = new Vector3(65, 25, 0);
         for (int i = 0; i < 7; i++)
@@ -205,7 +205,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent9PosGen()
     {
-        int tQuantity = 20;
+        //int tQuantity = 20;
         int tSpacingM = 7;
         int yDelta = 7;
         Vector3 pos = new Vector3(65, 32-yDelta, -(10*tSpacingM+2*tRadius)/2+tRadius);
@@ -240,7 +240,7 @@ public class Level1PSPosGen : MonoBehaviour
 
     public void psEvent10PosGen()
     {
-        int tQuantity = 20;
+        //int tQuantity = 20;
         float rngMTSpacingZ = 8.0f;
         float rngMTSpacingY = 10.0f;
         Vector3 pos = new Vector3(65, 25, -(10 * rngMTSpacingZ/2 + 2 * tRadius) / 2 + tRadius);
@@ -320,8 +320,8 @@ public class Level1PSPosGen : MonoBehaviour
     {
         int tQuantity = 15;
         int distanceThreshold = 5;
-        float pPosZ = Random.Range(-30, 30);
-        float pPosY = 32 + Random.Range(-20, 25);
+        float pPosZ = Random.Range(-60, 60);
+        float pPosY = 32 + Random.Range(-20, 45);
         Vector3 pos = new Vector3(65, pPosY, pPosZ);
         Level1Controller.psEvent14Positions.Add(pos);
         for (int i = 0; i < tQuantity - 1; i++)

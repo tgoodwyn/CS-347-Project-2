@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -59,6 +60,21 @@ public class Manager : MonoBehaviour
                 //Debug.Log(targetsHit);
             }
         }
+		else
+		{
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                SceneManager.LoadScene("Scene 2");
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                SceneManager.LoadScene("Credits/Credits");
+            }
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+				resetGame();
+            }
+		}
         if (plScreenActive)
         {
             if (Input.GetKeyDown(KeyCode.N))
@@ -166,6 +182,7 @@ public class Manager : MonoBehaviour
         gameOverText.SetActive(false);
         timeValue = 30.0f;
         shotsValue = 0;
+        Manager.targetsHit = 0;
     }
 
     public void resetGame()
@@ -174,10 +191,11 @@ public class Manager : MonoBehaviour
         gameFinished = false;
         gameBeatenText.SetActive(false);
         gameOverText.SetActive(false);
-        scoreValue = 0;
+		l1c.gameBeaten();
         timeValue = 30.0f;
         shotsValue = 0;
-
+        scoreValue = 0;
+        Manager.targetsHit = 0;
     }
 
     private void computeStats()

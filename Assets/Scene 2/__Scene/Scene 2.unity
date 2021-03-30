@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 854290180}
-  m_IndirectSpecularColor: {r: 0.60815096, g: 0.9181696, b: 0.97511786, a: 1}
+  m_IndirectSpecularColor: {r: 0.60815156, g: 0.9181707, b: 0.9751186, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 30f2c43432f32574a9c11fc5d714ea68,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -197,6 +200,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &854290181
@@ -296,10 +300,35 @@ PrefabInstance:
 
         Press ''c'' to view credits'
       objectReference: {fileID: 0}
+    - target: {fileID: 1142197608058274690, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559225403917384945, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2176842769975404431, guid: 2650f0b450f687b479eca34ee3cb6bb7,
         type: 3}
       propertyPath: m_Name
       value: FPS System
+      objectReference: {fileID: 0}
+    - target: {fileID: 3432305393696623700, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -121
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213548810444110439, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213548810444110439, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 7747098940688142589, guid: 2650f0b450f687b479eca34ee3cb6bb7,
         type: 3}
@@ -355,6 +384,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750353937733936374, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Game complete!
+
+        Press P to swap to hitscan map
+
+        Final
+        Score:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750353937733936374, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654260748627993304, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654260748627993304, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654260748627993304, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 131
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2650f0b450f687b479eca34ee3cb6bb7, type: 3}

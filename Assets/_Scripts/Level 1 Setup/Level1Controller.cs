@@ -241,6 +241,10 @@ public class Level1Controller : MonoBehaviour
             numTargets = psEvent19Positions.Count;
             psNextTargeti(psEvent19Positions);
         }
+		else if (eIncrementor > 32)
+		{
+			Manager1.victoryAchieved();
+		}
         
     }
 
@@ -745,7 +749,7 @@ public class Level1Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             // extracted into its own method
-           // nextLevel();
+           nextLevel();
         }
         // Repeats level
         if (Input.GetKeyDown(KeyCode.R))
@@ -840,7 +844,7 @@ public class Level1Controller : MonoBehaviour
         }
         spawnedTargets.Clear();
         Level1Controller.tDestructionTimes.Clear();
-        Manager1.resetGame();
+        //Manager1.resetGame();
         spawnTargets();
     }
 }

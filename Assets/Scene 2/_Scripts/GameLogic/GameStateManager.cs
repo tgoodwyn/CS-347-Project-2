@@ -188,6 +188,10 @@ public class GameStateManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Credits/Credits");
             }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                SceneManager.LoadScene("Level 1");
+            }
 
         }
 
