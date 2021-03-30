@@ -430,6 +430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3046643084010894469, guid: 7b6c5966aba4dba4eaae44f3353005e9,
         type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 318513151}
+    - target: {fileID: 3046643084010894469, guid: 7b6c5966aba4dba4eaae44f3353005e9,
+        type: 3}
       propertyPath: plScreen
       value: 
       objectReference: {fileID: 804592383}
@@ -583,6 +588,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258324134}
   m_CullTransparentMesh: 0
+--- !u!1 &318513151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2933920579176704817, guid: 0b79ba9238ebea04c86adb6dc06f4abc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2041584407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &338210936
 GameObject:
   m_ObjectHideFlags: 0
