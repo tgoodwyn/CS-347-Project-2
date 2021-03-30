@@ -746,27 +746,27 @@ public class Level1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        /*if (Input.GetKeyDown(KeyCode.N))
         {
             // extracted into its own method
-           //nextLevel();
-        }
+           nextLevel();
+        }*/
         // Repeats level
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             // repeatSubLevel();
-        }
+        }*/
         // Clears targets
-        if (Input.GetKeyDown(KeyCode.C))
+        /*if (Input.GetKeyDown(KeyCode.C))
         {
             foreach (GameObject obj in spawnedTargets)
             {
                 Destroy(obj);
             }
             spawnedTargets.Clear();
-        }
+        }*/
         // Enters test level
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             foreach (GameObject obj in spawnedTargets)
             {
@@ -774,7 +774,7 @@ public class Level1Controller : MonoBehaviour
             }
             spawnedTargets.Clear();
             // spawnTargetsHuman1();
-        }
+        }*/
 
         // returns true if game has been beaten or lost
         /*if (Manager1.getGameStatus())
