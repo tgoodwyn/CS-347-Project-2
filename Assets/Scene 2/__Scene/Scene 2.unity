@@ -289,6 +289,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 262287052801850441, guid: 2650f0b450f687b479eca34ee3cb6bb7,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Press ''b'' to begin game
+
+        Press ''c'' to view credits'
+      objectReference: {fileID: 0}
     - target: {fileID: 2176842769975404431, guid: 2650f0b450f687b479eca34ee3cb6bb7,
         type: 3}
       propertyPath: m_Name

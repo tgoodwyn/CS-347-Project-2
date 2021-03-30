@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -67,10 +68,6 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         levelGenerator = GetComponent<LevelGenerator>();
-        //hundredPercentTextLabel = GameObject.Find("Bonus Label");
-        //hundredPercentTextValue = GameObject.Find("100 % bonus");
-        //shotPenaltyTextLabel    = GameObject.Find("Penalty label");
-        //shotPenaltyTextValue    = GameObject.Find("Bullet penalty");
     }
     void gameFinish()
     {
@@ -185,6 +182,13 @@ public class GameStateManager : MonoBehaviour
                 updateScoreForLevel();
             }
 
+        } else
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                SceneManager.LoadScene("Credits/Credits");
+            }
+
         }
 
 
@@ -214,7 +218,7 @@ public class GameStateManager : MonoBehaviour
     private void displayEndOfGameText()
     {
         Text restartText = gameStartText.GetComponent<Text>();
-        restartText.text = "Press 'b' to restart game";
+        restartText.text = "Press 'b' to restart game\n Press 'c' to view credits";
         gameStartText.SetActive(true);
         gameCompleteText.SetActive(true);
         Text scoreText = gameFinalScoreText.GetComponent<Text>();
