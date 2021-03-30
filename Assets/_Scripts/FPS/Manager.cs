@@ -152,6 +152,10 @@ public class Manager : MonoBehaviour
         if (l1c.eIncrementor < 32) {
             nextLevelTextValue.text = levelDescriptions[l1c.eIncrementor + 1];
         }
+        else
+        {
+            nextLevelTextValue.text = "";
+        }
         plScreen.SetActive(true);
         plScreenActive = true;
         ready = false;
