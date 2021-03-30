@@ -320,8 +320,8 @@ public class Level1PSPosGen : MonoBehaviour
     {
         int tQuantity = 15;
         int distanceThreshold = 5;
-        float pPosZ = Random.Range(-60, 60);
-        float pPosY = 32 + Random.Range(-20, 45);
+        float pPosZ = Random.Range(-30, 30);
+        float pPosY = 32 + Random.Range(-20, 25);
         Vector3 pos = new Vector3(65, pPosY, pPosZ);
         Level1Controller.psEvent14Positions.Add(pos);
         for (int i = 0; i < tQuantity - 1; i++)
