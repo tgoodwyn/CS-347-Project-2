@@ -9,6 +9,7 @@ public class Manager : MonoBehaviour
     bool paused = true;
     bool gameFinished = false;
     bool plScreenActive = false;
+    public bool ready = true;
     public static int targetsHit = 0;
     public Text scoreTextValue;
     public Text shotsTextValue;
@@ -34,7 +35,7 @@ public class Manager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject gameBeatenText;
     public GameObject plScreen;
-
+    public GameObject reticle;
 
     void Start()
     {
@@ -63,12 +64,14 @@ public class Manager : MonoBehaviour
             {
                 plScreen.SetActive(false);
                 plScreenActive = false;
+                ready = true;
                 l1c.nextLevel();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 plScreen.SetActive(false);
                 plScreenActive = false;
+                ready = true;
                 l1c.repeatLevel();
             }
         }
@@ -78,20 +81,28 @@ public class Manager : MonoBehaviour
             gameFinished = true;
             paused = true;
             gameOverText.SetActive(true);
-        }
+        } 
         else
         {
             timeValue = timeValue - Time.deltaTime;
         }
+        
         scoreTextValue.text = scoreValue.ToString();
         shotsTextValue.text = shotsValue.ToString();
-        timeTextValue.text = timeValue.ToString("#.00");
+        if (ready == true)
+        {
+            timeTextValue.text = timeValue.ToString();
+        }
         tHitTextValue.text = Level1Controller.tDestructionTimes.Count.ToString();
         tRemainingTextValue.text = (l1c.numTargets - Level1Controller.tDestructionTimes.Count).ToString();
+
+
     }
 
+    // loads post level screen
     public void lplScreen()
     {
+        Manager.scoreValue += Manager.targetsHit * (int)Mathf.Log(Manager.timeValue,2) - (Manager.shotsValue - l1c.numTargets);
         computeStats();
         accuracyTextValue.text = accuracyValue.ToString("#.00")+"%";
         minTBetweenTargetsTextValue.text = minTBetweenTargetsValue.ToString("#.000")+" s";
@@ -100,11 +111,11 @@ public class Manager : MonoBehaviour
         sdTBetweenTargetsTextValue.text = sdTBetweenTargetsValue.ToString("#.000")+" s";
         plScreen.SetActive(true);
         plScreenActive = true;
+        ready = false;
     } 
 
     public void nlHUDSet()
     {
-        Manager.scoreValue += Manager.targetsHit * (int)Mathf.Log10(Manager.timeValue) - (Manager.shotsValue - l1c.numTargets);
         Manager.targetsHit = 0;
         Manager.shotsValue = 0;
         Manager.timeValue = 30.0f;

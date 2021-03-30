@@ -787,7 +787,7 @@ public class Level1Controller : MonoBehaviour
 
         }
         // Level beaten condition
-        if (Manager.targetsHit >= numTargets)
+        if (Manager.targetsHit >= numTargets && Manager1.ready)
         {
             Manager1.lplScreen();
             //nextLevel();
