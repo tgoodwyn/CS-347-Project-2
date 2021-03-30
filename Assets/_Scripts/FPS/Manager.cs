@@ -10,6 +10,7 @@ public class Manager : MonoBehaviour
     bool paused = true;
     bool gameFinished = false;
     bool plScreenActive = false;
+    bool gbScreenActive = true;
     public bool ready = true;
     public static int targetsHit = 0;
     public Text scoreTextValue;
@@ -39,6 +40,7 @@ public class Manager : MonoBehaviour
     public GameObject gameBeatenText;
     public GameObject plScreen;
     public GameObject reticle;
+    public GameObject gbScreen;
 
     private string[] levelDescriptions = new string[33];
 
@@ -96,6 +98,17 @@ public class Manager : MonoBehaviour
                 ready = true;
                 reticle.SetActive(true);
                 l1c.repeatLevel();
+            }
+        }
+        if (gbScreenActive)
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                gbScreen.SetActive(false);
+                scoreValue = 0;
+                timeValue = 30.0f;
+                shotsValue = 0;
+                Manager.targetsHit = 0;
             }
         }
         if (timeValue <= 0f)
