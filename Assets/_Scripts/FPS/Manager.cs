@@ -84,6 +84,18 @@ public class Manager : MonoBehaviour
             gameFinished = true;
             paused = true;
             gameOverText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                paused = false;
+                gameBeatenText.SetActive(false);
+                gameOverText.SetActive(false);
+                l1c.repeatLevel();
+            }
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                l1c.gameBeaten();
+            }
+
         } 
         else if (ready == false)
         {

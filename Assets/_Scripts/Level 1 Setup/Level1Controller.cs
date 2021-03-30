@@ -773,7 +773,7 @@ public class Level1Controller : MonoBehaviour
         }
 
         // returns true if game has been beaten or lost
-        if (Manager1.getGameStatus())
+        /*if (Manager1.getGameStatus())
         {
             if (Input.GetKeyDown(KeyCode.R)) {
                 Manager1.resetLevel();
@@ -786,6 +786,7 @@ public class Level1Controller : MonoBehaviour
             }
 
         }
+        */
         // Level beaten condition
         if (Manager.targetsHit >= numTargets && Manager1.ready)
         {
@@ -828,15 +829,17 @@ public class Level1Controller : MonoBehaviour
         spawnTargets();
     }
 
-    private void gameBeaten()
+    public void gameBeaten()
     {
         // resets the whole thing
         eIncrementor = 0;
+        tn = 0;
         foreach (GameObject obj in spawnedTargets)
         {
             Destroy(obj);
         }
         spawnedTargets.Clear();
+        Level1Controller.tDestructionTimes.Clear();
         Manager1.resetGame();
         spawnTargets();
     }
