@@ -65,6 +65,7 @@ public class Manager : MonoBehaviour
                 plScreen.SetActive(false);
                 plScreenActive = false;
                 ready = true;
+                reticle.SetActive(true);
                 l1c.nextLevel();
             }
             if (Input.GetKeyDown(KeyCode.R))
@@ -72,6 +73,7 @@ public class Manager : MonoBehaviour
                 plScreen.SetActive(false);
                 plScreenActive = false;
                 ready = true;
+                reticle.SetActive(true);
                 l1c.repeatLevel();
             }
         }
@@ -112,6 +114,7 @@ public class Manager : MonoBehaviour
         plScreen.SetActive(true);
         plScreenActive = true;
         ready = false;
+        reticle.SetActive(false);
     } 
 
     public void nlHUDSet()
