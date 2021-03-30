@@ -7,7 +7,6 @@ using UnityEngine;
 public class Level1Controller : MonoBehaviour
 {
     public GameObject target;  // Spherical target prefab array
-    public GameObject bTarget;
     public Level1Controller l1c;
     public static GameObject targetR;
     private float tRadius = 1.75f;  // Spherical target radii, in the order they are to be spawned
@@ -44,14 +43,14 @@ public class Level1Controller : MonoBehaviour
     
 
 
-    private Manager Manager;
+    private Manager Manager1;
     public List<GameObject> spawnedTargets = new List<GameObject>();
     public int eIncrementor = 0;  // event incrementor
 
     public static List<float> tDestructionTimes = new List<float>();
 
     // for checking when the level's been beat
-    private int numTargets = 20;
+    public int numTargets = 20;
 
     
     private void spawnTargets()
@@ -145,6 +144,7 @@ public class Level1Controller : MonoBehaviour
         l1psposgen.psEvent19PosGen();
     }
 
+    // Spawns the next of the progressively spawned targets
     public void psNextTarget() {
         if (eIncrementor == 14)
         {
@@ -243,6 +243,8 @@ public class Level1Controller : MonoBehaviour
         }
         
     }
+
+    // psNextTarget implementer 
     private void psNextTargeti(List<Vector3> psEventPositions)
     {
         if (tn < psEventPositions.Count)
@@ -684,7 +686,7 @@ public class Level1Controller : MonoBehaviour
         }
         numTargets = tQuantity;
     }
-
+    /*
     private void spawnTargetsHuman1() {
         int tQuantity = 5;
         int distanceThreshold = 20;
@@ -726,8 +728,7 @@ public class Level1Controller : MonoBehaviour
         }
         numTargets = tQuantity;
     }
-    
-
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -735,7 +736,7 @@ public class Level1Controller : MonoBehaviour
         l1psposgen = GetComponent<Level1PSPosGen>();
         genPSPos();
         spawnTargets();
-        Manager = GetComponent<Manager>();
+        Manager1 = GetComponent<Manager>();
     }
 
     // Update is called once per frame
@@ -749,7 +750,7 @@ public class Level1Controller : MonoBehaviour
         // Repeats level
         if (Input.GetKeyDown(KeyCode.R))
         {
-            repeatSubLevel();
+            //TEMP repeatSubLevel();
         }
         // Clears targets
         if (Input.GetKeyDown(KeyCode.C))
@@ -768,15 +769,15 @@ public class Level1Controller : MonoBehaviour
                 Destroy(obj);
             }
             spawnedTargets.Clear();
-            spawnTargetsHuman1();
+            // spawnTargetsHuman1();
         }
 
         // returns true if game has been beaten or lost
-        if (Manager.getGameStatus())
+        if (Manager1.getGameStatus())
         {
             if (Input.GetKeyDown(KeyCode.R)) {
-                Manager.resetSubLevel();
-                repeatSubLevel();
+                Manager1.resetLevel();
+               //TEMP repeatSubLevel();
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -785,25 +786,28 @@ public class Level1Controller : MonoBehaviour
             }
 
         }
-
         // Level beaten condition
         if (Manager.targetsHit >= numTargets)
         {
-            nextLevel();
+            Manager1.lplScreen();
+            //nextLevel();
         }
     }
 
 
-    private void repeatSubLevel() {
+    public void repeatLevel() {
         Manager.targetsHit = 0;
         foreach (GameObject obj in spawnedTargets)
         {
             Destroy(obj);
         }
         spawnedTargets.Clear();
+        Level1Controller.tDestructionTimes.Clear();
+        tn = 0;
+        Manager1.rlHUDSet();
         spawnTargets();
     }
-    private void nextLevel()
+    public void nextLevel()
     {
 
         // reset the count of targets hit
@@ -812,15 +816,13 @@ public class Level1Controller : MonoBehaviour
         //timeLeft = 20
         //shotsTaken = 40
         //20*20 - 20
-        Manager.scoreValue += Manager.targetsHit * (int)Manager.timeValue - Manager.shotsValue;
-        Manager.targetsHit = 0;
-        Manager.shotsValue = 0;
-        Manager.timeValue = 30.0f;
+        Manager1.nlHUDSet();
         foreach (GameObject obj in spawnedTargets)
         {
             Destroy(obj);
         }
         spawnedTargets.Clear();
+        Level1Controller.tDestructionTimes.Clear();
         eIncrementor++;
         tn = 0;
         spawnTargets();
@@ -835,7 +837,7 @@ public class Level1Controller : MonoBehaviour
             Destroy(obj);
         }
         spawnedTargets.Clear();
-        Manager.resetGame();
+        Manager1.resetGame();
         spawnTargets();
     }
 }

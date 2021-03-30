@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-
+    public Level1Controller l1c;
     bool paused = true;
     bool gameFinished = false;
+    bool plScreenActive = false;
     public static int targetsHit = 0;
     public Text scoreTextValue;
     public Text shotsTextValue;
@@ -32,6 +33,7 @@ public class Manager : MonoBehaviour
 
     public GameObject gameOverText;
     public GameObject gameBeatenText;
+    public GameObject plScreen;
 
 
     void Start()
@@ -40,6 +42,7 @@ public class Manager : MonoBehaviour
         timeValue = 30.0f;
         shotsValue = 0;
         paused = false;
+        l1c = GetComponent<Level1Controller>();
     }
 
     void Update()
@@ -54,7 +57,21 @@ public class Manager : MonoBehaviour
                 //Debug.Log(targetsHit);
             }
         }
-
+        if (plScreenActive)
+        {
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                plScreen.SetActive(false);
+                plScreenActive = false;
+                l1c.nextLevel();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                plScreen.SetActive(false);
+                plScreenActive = false;
+                l1c.repeatLevel();
+            }
+        }
         if (timeValue <= 0f)
         {
             //Debug.Log("Game over");
@@ -68,7 +85,36 @@ public class Manager : MonoBehaviour
         }
         scoreTextValue.text = scoreValue.ToString();
         shotsTextValue.text = shotsValue.ToString();
-        timeTextValue.text = timeValue.ToString();
+        timeTextValue.text = timeValue.ToString("#.00");
+        tHitTextValue.text = Level1Controller.tDestructionTimes.Count.ToString();
+        tRemainingTextValue.text = (l1c.numTargets - Level1Controller.tDestructionTimes.Count).ToString();
+    }
+
+    public void lplScreen()
+    {
+        computeStats();
+        accuracyTextValue.text = accuracyValue.ToString("#.00")+"%";
+        minTBetweenTargetsTextValue.text = minTBetweenTargetsValue.ToString("#.000")+" s";
+        maxTBetweenTargetsTextValue.text = maxTBetweenTargetsValue.ToString("#.000")+" s";
+        avgTBetweenTargetsTextValue.text = avgTBetweenTargetsValue.ToString("#.000")+" s";
+        sdTBetweenTargetsTextValue.text = sdTBetweenTargetsValue.ToString("#.000")+" s";
+        plScreen.SetActive(true);
+        plScreenActive = true;
+    } 
+
+    public void nlHUDSet()
+    {
+        Manager.scoreValue += Manager.targetsHit * (int)Mathf.Log10(Manager.timeValue) - (Manager.shotsValue - l1c.numTargets);
+        Manager.targetsHit = 0;
+        Manager.shotsValue = 0;
+        Manager.timeValue = 30.0f;
+    }
+    
+    public void rlHUDSet()
+    {
+        Manager.targetsHit = 0;
+        Manager.shotsValue = 0;
+        Manager.timeValue = 30.0f;
     }
 
     public void victoryAchieved()
@@ -78,7 +124,9 @@ public class Manager : MonoBehaviour
         gameBeatenText.SetActive(true);
     }
 
-    public void resetSubLevel()
+
+
+    public void resetLevel()
     {
         paused = false;
         gameFinished = false;
@@ -98,6 +146,46 @@ public class Manager : MonoBehaviour
         timeValue = 30.0f;
         shotsValue = 0;
 
+    }
+
+    private void computeStats()
+    {
+
+        // Computes intervals between target hits
+        List<float> betweenTargetIntervals = new List<float>();
+        for (int i = 0; i < Level1Controller.tDestructionTimes.Count - 1; i++)
+        {
+            betweenTargetIntervals.Add(Level1Controller.tDestructionTimes[i + 1] - Level1Controller.tDestructionTimes[i]);
+        }
+
+        // Finds min, max, and avg between target intervals
+        float sumOfBTIs = 0;
+        minTBetweenTargetsValue = 10;
+        maxTBetweenTargetsValue = 0;
+        for (int i = 0; i < betweenTargetIntervals.Count; i++)
+        {
+            if (betweenTargetIntervals[i] < minTBetweenTargetsValue)
+            {
+                minTBetweenTargetsValue = betweenTargetIntervals[i];
+            }
+            if (betweenTargetIntervals[i] > maxTBetweenTargetsValue)
+            {
+                maxTBetweenTargetsValue = betweenTargetIntervals[i];
+            }
+            sumOfBTIs += betweenTargetIntervals[i];
+        }
+        avgTBetweenTargetsValue = sumOfBTIs / betweenTargetIntervals.Count;
+
+        // Computers SD
+        float sqDiffSum = 0;
+        for (int i = 0; i < betweenTargetIntervals.Count; i++)
+        {
+            sqDiffSum += Mathf.Pow(betweenTargetIntervals[i] - avgTBetweenTargetsValue, 2);
+        }
+        sdTBetweenTargetsValue = Mathf.Sqrt(sqDiffSum / (betweenTargetIntervals.Count - 1));
+
+        // Computes accuracy
+        accuracyValue = 100 * targetsHit / shotsValue;
     }
 
 
