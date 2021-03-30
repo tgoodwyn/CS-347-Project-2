@@ -109,7 +109,7 @@ public class Manager : MonoBehaviour
                 scoreValue = 0;
                 timeValue = 30.0f;
                 shotsValue = 0;
-                Manager.targetsHit = 0;
+                targetsHit = 0;
             }
         }
         if (timeValue <= 0f)
