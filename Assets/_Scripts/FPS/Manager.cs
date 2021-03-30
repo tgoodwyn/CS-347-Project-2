@@ -21,6 +21,7 @@ public class Manager : MonoBehaviour
     public Text maxTBetweenTargetsTextValue;
     public Text avgTBetweenTargetsTextValue;
     public Text sdTBetweenTargetsTextValue;
+    public Text clScoreTextValue;
 
     public static int scoreValue;
     public static int shotsValue;
@@ -106,6 +107,7 @@ public class Manager : MonoBehaviour
     {
         Manager.scoreValue += Manager.targetsHit * (int)Mathf.Log(Manager.timeValue,2) - (Manager.shotsValue - l1c.numTargets);
         computeStats();
+        clScoreTextValue.text = (Manager.targetsHit * (int)Mathf.Log(Manager.timeValue, 2) - (Manager.shotsValue - l1c.numTargets)).ToString();
         accuracyTextValue.text = accuracyValue.ToString("#.00")+"%";
         minTBetweenTargetsTextValue.text = minTBetweenTargetsValue.ToString("#.000")+" s";
         maxTBetweenTargetsTextValue.text = maxTBetweenTargetsValue.ToString("#.000")+" s";
