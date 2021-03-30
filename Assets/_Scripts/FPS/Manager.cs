@@ -40,7 +40,7 @@ public class Manager : MonoBehaviour
     public GameObject plScreen;
     public GameObject reticle;
 
-    private string[] levelDescriptions = new string[32];
+    private string[] levelDescriptions = new string[33];
 
     void Start()
     {
@@ -149,7 +149,9 @@ public class Manager : MonoBehaviour
         maxTBetweenTargetsTextValue.text = maxTBetweenTargetsValue.ToString("#.000")+" s";
         avgTBetweenTargetsTextValue.text = avgTBetweenTargetsValue.ToString("#.000")+" s";
         sdTBetweenTargetsTextValue.text = sdTBetweenTargetsValue.ToString("#.000")+" s";
-        nextLevelTextValue.text = levelDescriptions[l1c.eIncrementor + 1];
+        if (l1c.eIncrementor < 32) {
+            nextLevelTextValue.text = levelDescriptions[l1c.eIncrementor + 1];
+        }
         plScreen.SetActive(true);
         plScreenActive = true;
         ready = false;
@@ -268,28 +270,29 @@ public class Manager : MonoBehaviour
         levelDescriptions[7] = "Circle, random spacing \nTargets: 8";
         levelDescriptions[8] = "Random arrangement, large area \nTargets :10";
         levelDescriptions[9] = "Random arrangement, medium area \nTargets: 6";
-        levelDescriptions[10] = "Random arrangement, small area \nTargets: 4";
-        levelDescriptions[11] = "Repeat. Random arrangement, small area \nTargets: 4";
+        levelDescriptions[10] = "Repeat. Random arrangement, medium area \nTargets: 6";
+        levelDescriptions[11] = "Random arrangement, small area \nTargets: 4";
         levelDescriptions[12] = "Repeat. Random arrangement, small area \nTargets: 4";
-        levelDescriptions[13] = "Spheres now spawn 1 at a time as the previous is hit. \nHorizontal motion, even spacing, switches directions \nTargets: 15";
-        levelDescriptions[14] = "Horizontal motion, random spacing, switches directions \nTargets: 16";
-        levelDescriptions[15] ="Slower horizontal motion, even spacing, switches directions \nTargets: 15";
-        levelDescriptions[16] ="Slower horizontal motion, random spacing, switches directions \nTargets: 16";
-        levelDescriptions[17] ="Vertical motion, even spacing, switches directions \nTargets: 11";
-        levelDescriptions[18] ="Vertical motion, random spacing, switches direction \nTargets: 14";
-        levelDescriptions[19] ="Slower vertical motion, even spacing, switches direction \nTargets: 11";
-        levelDescriptions[20] ="Slower vertical motion, random spacing, switches direction \nTargets: 14";
-        levelDescriptions[21] ="Zig - zag pattern, switches directions horizontally \nTargets: 20";
-        levelDescriptions[22] ="Random motion, switches directions horizontally \nTargets: 20";
-        levelDescriptions[23] ="Circle, even spacing \nTargets: 12";
-        levelDescriptions[24] ="Circle, random spacing \nTargets: 8";
-        levelDescriptions[25] ="Random spawns in a large spawn area  \nTargets: 15";
-        levelDescriptions[26] ="Random spawns in a medium spawn area \nTargets: 15";
-        levelDescriptions[27] ="Random spawns in a small spawn area \nTargets: 15";
-        levelDescriptions[28] ="Random spawns in a smaller spawn area \nTargets: 15";
-        levelDescriptions[29] ="Random spawns of various sizes in small - medium spawn area \nTargets: 15";
-        levelDescriptions[30] ="Sphere -in-random - motion. \nTargets: 15";
-        levelDescriptions[31] ="Sphere -in-random - motion, varying size \nTargets: 15";
+        levelDescriptions[13] = "Repeat. Random arrangement, small area \nTargets: 4";
+        levelDescriptions[14] = "Spheres now spawn 1 at a time as the previous is hit. \nHorizontal motion, even spacing, switches directions \nTargets: 15";
+        levelDescriptions[15] = "Horizontal motion, random spacing, switches directions \nTargets: 16";
+        levelDescriptions[16] ="Slower horizontal motion, even spacing, switches directions \nTargets: 15";
+        levelDescriptions[17] ="Slower horizontal motion, random spacing, switches directions \nTargets: 16";
+        levelDescriptions[18] ="Vertical motion, even spacing, switches directions \nTargets: 11";
+        levelDescriptions[19] ="Vertical motion, random spacing, switches direction \nTargets: 14";
+        levelDescriptions[20] ="Slower vertical motion, even spacing, switches direction \nTargets: 11";
+        levelDescriptions[21] ="Slower vertical motion, random spacing, switches direction \nTargets: 14";
+        levelDescriptions[22] ="Zig - zag pattern, switches directions horizontally \nTargets: 20";
+        levelDescriptions[23] ="Random motion, switches directions horizontally \nTargets: 20";
+        levelDescriptions[24] ="Circle, even spacing \nTargets: 12";
+        levelDescriptions[25] ="Circle, random spacing \nTargets: 8";
+        levelDescriptions[26] ="Random spawns in a large spawn area  \nTargets: 15";
+        levelDescriptions[27] ="Random spawns in a medium spawn area \nTargets: 15";
+        levelDescriptions[28] ="Random spawns in a small spawn area \nTargets: 15";
+        levelDescriptions[29] ="Random spawns in a smaller spawn area \nTargets: 15";
+        levelDescriptions[30] ="Random spawns of various sizes in small - medium spawn area \nTargets: 15";
+        levelDescriptions[31] ="Sphere -in-random - motion. \nTargets: 15";
+        levelDescriptions[32] ="Sphere -in-random - motion, varying size \nTargets: 15";
 
     }
 
