@@ -749,12 +749,12 @@ public class Level1Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             // extracted into its own method
-           nextLevel();
+           //nextLevel();
         }
         // Repeats level
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //TEMP repeatSubLevel();
+            // repeatSubLevel();
         }
         // Clears targets
         if (Input.GetKeyDown(KeyCode.C))
