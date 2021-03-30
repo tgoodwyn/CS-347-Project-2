@@ -49,7 +49,6 @@ public class Manager : MonoBehaviour
         scoreValue = 0;
         timeValue = 30.0f;
         shotsValue = 0;
-        paused = false;
         l1c = GetComponent<Level1Controller>();
         addLevelDescriptions();
     }
@@ -105,6 +104,8 @@ public class Manager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.B))
             {
                 gbScreen.SetActive(false);
+                gbScreenActive = false;
+                paused = false;
                 scoreValue = 0;
                 timeValue = 30.0f;
                 shotsValue = 0;
@@ -130,7 +131,7 @@ public class Manager : MonoBehaviour
             }
 
         } 
-        else if (ready == false)
+        else if (ready == false || gbScreenActive==true)
         {
 
         }
