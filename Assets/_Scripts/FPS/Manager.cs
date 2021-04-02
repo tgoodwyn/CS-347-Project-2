@@ -80,7 +80,20 @@ public class Manager : MonoBehaviour
 				resetGame();
             }
 		}
-        if (plScreenActive)
+        if (gbScreenActive)
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                gbScreen.SetActive(false);
+                gbScreenActive = false;
+                paused = false;
+                scoreValue = 0;
+                timeValue = 30.0f;
+                shotsValue = 0;
+                targetsHit = 0;
+            }
+        }
+        else if (plScreenActive)
         {
             if (Input.GetKeyDown(KeyCode.N))
             {
@@ -99,17 +112,12 @@ public class Manager : MonoBehaviour
                 l1c.repeatLevel();
             }
         }
-        if (gbScreenActive)
+        // for presentation
+        else
         {
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                gbScreen.SetActive(false);
-                gbScreenActive = false;
-                paused = false;
-                scoreValue = 0;
-                timeValue = 30.0f;
-                shotsValue = 0;
-                targetsHit = 0;
+                l1c.nextLevel();
             }
         }
         if (timeValue <= 0f)
@@ -297,9 +305,9 @@ public class Manager : MonoBehaviour
         levelDescriptions[16] ="Slower horizontal motion, even spacing, switches directions \nTargets: 15";
         levelDescriptions[17] ="Slower horizontal motion, random spacing, switches directions \nTargets: 16";
         levelDescriptions[18] ="Vertical motion, even spacing, switches directions \nTargets: 11";
-        levelDescriptions[19] ="Vertical motion, random spacing, switches direction \nTargets: 14";
-        levelDescriptions[20] ="Slower vertical motion, even spacing, switches direction \nTargets: 11";
-        levelDescriptions[21] ="Slower vertical motion, random spacing, switches direction \nTargets: 14";
+        levelDescriptions[19] ="Vertical motion, random spacing, switches directions \nTargets: 14";
+        levelDescriptions[20] ="Slower vertical motion, even spacing, switches directions \nTargets: 11";
+        levelDescriptions[21] ="Slower vertical motion, random spacing, switches directions \nTargets: 14";
         levelDescriptions[22] ="Zig - zag pattern, switches directions horizontally \nTargets: 20";
         levelDescriptions[23] ="Random motion, switches directions horizontally \nTargets: 20";
         levelDescriptions[24] ="Circle, even spacing \nTargets: 12";
@@ -309,8 +317,8 @@ public class Manager : MonoBehaviour
         levelDescriptions[28] ="Random spawns in a small spawn area \nTargets: 15";
         levelDescriptions[29] ="Random spawns in a smaller spawn area \nTargets: 15";
         levelDescriptions[30] ="Random spawns of various sizes in small - medium spawn area \nTargets: 15";
-        levelDescriptions[31] ="Sphere -in-random - motion. \nTargets: 15";
-        levelDescriptions[32] ="Sphere -in-random - motion, varying size \nTargets: 15";
+        levelDescriptions[31] ="Sphere - in-random - motion. \nTargets: 15";
+        levelDescriptions[32] ="Sphere - in-random - motion, varying size \nTargets: 15";
 
     }
 
